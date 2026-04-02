@@ -2,21 +2,19 @@
 
 import Image from "next/image"
 import Link from "next/link"
-import { motion } from "framer-motion"
 import { Button } from "@/components/ui/button"
 import { Card, CardContent } from "@/components/ui/card"
 import { Factory, Award, Leaf, ArrowRight } from "lucide-react"
 import {
   FadeUp,
-  FadeIn,
   SlideInLeft,
   SlideInRight,
-  StaggerContainer,
-  StaggerItem,
   HoverScale,
   ParallaxImage,
   MagneticWrapper,
   TextReveal,
+  AnimatedOrb,
+  ScrollIndicator,
 } from "@/components/animations"
 
 const products = [
@@ -67,43 +65,24 @@ export default function HomePage() {
         <div className="absolute inset-0 bg-gradient-to-b from-muted/30 via-background to-background" />
         
         {/* Animated background shapes */}
-        <motion.div
-          className="absolute top-1/4 -right-32 w-96 h-96 bg-gradient-to-br from-muted/40 to-transparent rounded-full blur-3xl"
-          animate={{ 
-            scale: [1, 1.1, 1],
-            opacity: [0.3, 0.5, 0.3],
-          }}
-          transition={{ 
-            duration: 8, 
-            repeat: Infinity,
-            ease: "easeInOut" 
-          }}
-        />
+        <AnimatedOrb className="top-1/4 -right-32 w-96 h-96" />
         
         <div className="container mx-auto px-6 md:px-8 py-16 md:py-24 relative z-10">
           <div className="grid lg:grid-cols-2 gap-12 lg:gap-16 items-center">
             <div className="text-center lg:text-left">
-              <motion.div
-                initial={{ opacity: 0, y: 20 }}
-                animate={{ opacity: 1, y: 0 }}
-                transition={{ duration: 0.6 }}
-                className="mb-6"
-              >
-                <span className="inline-block px-4 py-1.5 text-xs font-medium tracking-widest uppercase bg-foreground/5 rounded-full border border-border/50">
+              <FadeUp>
+                <span className="inline-block px-4 py-1.5 text-xs font-medium tracking-widest uppercase bg-foreground/5 rounded-full border border-border/50 mb-6">
                   Premier en Algerie
                 </span>
-              </motion.div>
+              </FadeUp>
               
               <h1 className="text-4xl md:text-5xl lg:text-6xl xl:text-7xl font-semibold tracking-tight text-balance mb-8 leading-[1.1]">
                 <TextReveal text="Le Premier Producteur de Nicotine Pouches en" delay={0.2} />
-                <motion.span
-                  initial={{ opacity: 0, y: 20 }}
-                  animate={{ opacity: 1, y: 0 }}
-                  transition={{ duration: 0.6, delay: 0.8 }}
-                  className="block mt-2 bg-gradient-to-r from-foreground via-foreground/80 to-foreground bg-clip-text"
-                >
-                  Algerie
-                </motion.span>
+                <FadeUp delay={0.8}>
+                  <span className="block mt-2 bg-gradient-to-r from-foreground via-foreground/80 to-foreground bg-clip-text">
+                    Algerie
+                  </span>
+                </FadeUp>
               </h1>
               
               <FadeUp delay={0.6}>
@@ -131,12 +110,7 @@ export default function HomePage() {
               </FadeUp>
             </div>
             
-            <motion.div
-              initial={{ opacity: 0, scale: 0.9, y: 40 }}
-              animate={{ opacity: 1, scale: 1, y: 0 }}
-              transition={{ duration: 1, delay: 0.3, ease: [0.25, 0.4, 0.25, 1] }}
-              className="relative"
-            >
+            <FadeUp delay={0.3} className="relative">
               <div className="relative">
                 <ParallaxImage className="rounded-3xl">
                   <Image
@@ -149,36 +123,15 @@ export default function HomePage() {
                   />
                 </ParallaxImage>
                 {/* Decorative elements */}
-                <motion.div
-                  className="absolute -bottom-6 -left-6 w-24 h-24 bg-gradient-to-br from-teal-400/20 to-teal-600/20 rounded-2xl -z-10"
-                  animate={{ rotate: [0, 5, 0] }}
-                  transition={{ duration: 6, repeat: Infinity, ease: "easeInOut" }}
-                />
-                <motion.div
-                  className="absolute -top-6 -right-6 w-32 h-32 bg-gradient-to-br from-amber-400/20 to-orange-500/20 rounded-full -z-10"
-                  animate={{ scale: [1, 1.1, 1] }}
-                  transition={{ duration: 5, repeat: Infinity, ease: "easeInOut" }}
-                />
+                <div className="absolute -bottom-6 -left-6 w-24 h-24 bg-gradient-to-br from-teal-400/20 to-teal-600/20 rounded-2xl -z-10 animate-pulse" />
+                <div className="absolute -top-6 -right-6 w-32 h-32 bg-gradient-to-br from-amber-400/20 to-orange-500/20 rounded-full -z-10 animate-pulse" />
               </div>
-            </motion.div>
+            </FadeUp>
           </div>
         </div>
         
         {/* Scroll indicator */}
-        <motion.div
-          initial={{ opacity: 0 }}
-          animate={{ opacity: 1 }}
-          transition={{ delay: 1.5 }}
-          className="absolute bottom-12 left-1/2 -translate-x-1/2"
-        >
-          <motion.div
-            animate={{ y: [0, 8, 0] }}
-            transition={{ duration: 1.5, repeat: Infinity, ease: "easeInOut" }}
-            className="w-6 h-10 border-2 border-foreground/20 rounded-full flex items-start justify-center p-1.5"
-          >
-            <motion.div className="w-1.5 h-1.5 bg-foreground/40 rounded-full" />
-          </motion.div>
-        </motion.div>
+        <ScrollIndicator />
       </section>
 
       {/* About Section */}
@@ -218,27 +171,23 @@ export default function HomePage() {
             </div>
           </FadeUp>
           
-          <StaggerContainer className="grid md:grid-cols-3 gap-8" staggerDelay={0.15}>
-            {features.map((feature) => (
-              <StaggerItem key={feature.title}>
-                <HoverScale scale={1.02}>
+          <div className="grid md:grid-cols-3 gap-8">
+            {features.map((feature, index) => (
+              <FadeUp key={feature.title} delay={index * 0.15}>
+                <HoverScale>
                   <Card className="border-0 shadow-xl bg-background h-full">
                     <CardContent className="p-10 text-center">
-                      <motion.div
-                        whileHover={{ rotate: [0, -10, 10, 0] }}
-                        transition={{ duration: 0.5 }}
-                        className="inline-flex items-center justify-center w-16 h-16 rounded-2xl bg-foreground/5 mb-8"
-                      >
+                      <div className="inline-flex items-center justify-center w-16 h-16 rounded-2xl bg-foreground/5 mb-8 transition-transform duration-300 hover:rotate-6">
                         <feature.icon className="h-7 w-7 text-foreground" />
-                      </motion.div>
+                      </div>
                       <h3 className="text-xl font-semibold mb-4">{feature.title}</h3>
                       <p className="text-muted-foreground leading-relaxed">{feature.description}</p>
                     </CardContent>
                   </Card>
                 </HoverScale>
-              </StaggerItem>
+              </FadeUp>
             ))}
-          </StaggerContainer>
+          </div>
         </div>
       </section>
 
@@ -259,24 +208,20 @@ export default function HomePage() {
             </div>
           </FadeUp>
           
-          <StaggerContainer className="grid md:grid-cols-3 gap-8" staggerDelay={0.15}>
-            {products.map((product) => (
-              <StaggerItem key={product.name}>
+          <div className="grid md:grid-cols-3 gap-8">
+            {products.map((product, index) => (
+              <FadeUp key={product.name} delay={index * 0.15}>
                 <HoverScale scale={1.03}>
                   <Card className="overflow-hidden border-0 shadow-xl group cursor-pointer">
                     <div className="relative aspect-[4/5] overflow-hidden">
-                      <motion.div
-                        className="absolute inset-0"
-                        whileHover={{ scale: 1.05 }}
-                        transition={{ duration: 0.6, ease: [0.25, 0.4, 0.25, 1] }}
-                      >
+                      <div className="absolute inset-0 transition-transform duration-600 group-hover:scale-105">
                         <Image
                           src={product.image}
                           alt={`AERA ${product.name} - ${product.strength}`}
                           fill
                           className="object-cover"
                         />
-                      </motion.div>
+                      </div>
                       <div className="absolute inset-0 bg-gradient-to-t from-black/60 via-transparent to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-500" />
                     </div>
                     <CardContent className="p-8">
@@ -290,9 +235,9 @@ export default function HomePage() {
                     </CardContent>
                   </Card>
                 </HoverScale>
-              </StaggerItem>
+              </FadeUp>
             ))}
-          </StaggerContainer>
+          </div>
           
           <FadeUp delay={0.4}>
             <div className="text-center mt-16">
@@ -325,11 +270,7 @@ export default function HomePage() {
                   />
                 </ParallaxImage>
                 {/* Gold accent */}
-                <motion.div
-                  className="absolute -bottom-4 -right-4 w-40 h-40 bg-gradient-to-br from-amber-500/30 to-amber-700/30 rounded-full blur-2xl"
-                  animate={{ scale: [1, 1.2, 1], opacity: [0.3, 0.5, 0.3] }}
-                  transition={{ duration: 4, repeat: Infinity, ease: "easeInOut" }}
-                />
+                <div className="absolute -bottom-4 -right-4 w-40 h-40 bg-gradient-to-br from-amber-500/30 to-amber-700/30 rounded-full blur-2xl animate-pulse" />
               </div>
             </SlideInLeft>
             

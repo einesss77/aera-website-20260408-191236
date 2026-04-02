@@ -1,33 +1,57 @@
 "use client"
 
-import { motion, useInView, type Variants } from "framer-motion"
-import { useRef, type ReactNode } from "react"
+import { useRef, useEffect, useState, type ReactNode } from "react"
+
+// Custom hook for intersection observer
+function useInView(options: IntersectionObserverInit = {}) {
+  const ref = useRef<HTMLDivElement>(null)
+  const [isInView, setIsInView] = useState(false)
+
+  useEffect(() => {
+    const element = ref.current
+    if (!element) return
+
+    const observer = new IntersectionObserver(
+      ([entry]) => {
+        if (entry.isIntersecting) {
+          setIsInView(true)
+          observer.unobserve(element)
+        }
+      },
+      { threshold: 0.1, rootMargin: "-50px", ...options }
+    )
+
+    observer.observe(element)
+    return () => observer.disconnect()
+  }, [options])
+
+  return { ref, isInView }
+}
 
 // Fade up animation for sections
 export function FadeUp({
   children,
   delay = 0,
-  duration = 0.6,
   className = "",
 }: {
   children: ReactNode
   delay?: number
-  duration?: number
   className?: string
 }) {
-  const ref = useRef(null)
-  const isInView = useInView(ref, { once: true, margin: "-100px" })
+  const { ref, isInView } = useInView()
 
   return (
-    <motion.div
+    <div
       ref={ref}
-      initial={{ opacity: 0, y: 40 }}
-      animate={isInView ? { opacity: 1, y: 0 } : { opacity: 0, y: 40 }}
-      transition={{ duration, delay, ease: [0.25, 0.4, 0.25, 1] }}
-      className={className}
+      className={`transition-all duration-700 ease-out ${className}`}
+      style={{
+        opacity: isInView ? 1 : 0,
+        transform: isInView ? "translateY(0)" : "translateY(40px)",
+        transitionDelay: `${delay}s`,
+      }}
     >
       {children}
-    </motion.div>
+    </div>
   )
 }
 
@@ -35,27 +59,25 @@ export function FadeUp({
 export function FadeIn({
   children,
   delay = 0,
-  duration = 0.6,
   className = "",
 }: {
   children: ReactNode
   delay?: number
-  duration?: number
   className?: string
 }) {
-  const ref = useRef(null)
-  const isInView = useInView(ref, { once: true, margin: "-50px" })
+  const { ref, isInView } = useInView()
 
   return (
-    <motion.div
+    <div
       ref={ref}
-      initial={{ opacity: 0 }}
-      animate={isInView ? { opacity: 1 } : { opacity: 0 }}
-      transition={{ duration, delay, ease: "easeOut" }}
-      className={className}
+      className={`transition-opacity duration-600 ease-out ${className}`}
+      style={{
+        opacity: isInView ? 1 : 0,
+        transitionDelay: `${delay}s`,
+      }}
     >
       {children}
-    </motion.div>
+    </div>
   )
 }
 
@@ -69,19 +91,20 @@ export function ScaleUp({
   delay?: number
   className?: string
 }) {
-  const ref = useRef(null)
-  const isInView = useInView(ref, { once: true, margin: "-100px" })
+  const { ref, isInView } = useInView()
 
   return (
-    <motion.div
+    <div
       ref={ref}
-      initial={{ opacity: 0, scale: 0.9 }}
-      animate={isInView ? { opacity: 1, scale: 1 } : { opacity: 0, scale: 0.9 }}
-      transition={{ duration: 0.7, delay, ease: [0.25, 0.4, 0.25, 1] }}
-      className={className}
+      className={`transition-all duration-700 ease-out ${className}`}
+      style={{
+        opacity: isInView ? 1 : 0,
+        transform: isInView ? "scale(1)" : "scale(0.9)",
+        transitionDelay: `${delay}s`,
+      }}
     >
       {children}
-    </motion.div>
+    </div>
   )
 }
 
@@ -95,19 +118,20 @@ export function SlideInLeft({
   delay?: number
   className?: string
 }) {
-  const ref = useRef(null)
-  const isInView = useInView(ref, { once: true, margin: "-100px" })
+  const { ref, isInView } = useInView()
 
   return (
-    <motion.div
+    <div
       ref={ref}
-      initial={{ opacity: 0, x: -60 }}
-      animate={isInView ? { opacity: 1, x: 0 } : { opacity: 0, x: -60 }}
-      transition={{ duration: 0.7, delay, ease: [0.25, 0.4, 0.25, 1] }}
-      className={className}
+      className={`transition-all duration-700 ease-out ${className}`}
+      style={{
+        opacity: isInView ? 1 : 0,
+        transform: isInView ? "translateX(0)" : "translateX(-60px)",
+        transitionDelay: `${delay}s`,
+      }}
     >
       {children}
-    </motion.div>
+    </div>
   )
 }
 
@@ -121,19 +145,20 @@ export function SlideInRight({
   delay?: number
   className?: string
 }) {
-  const ref = useRef(null)
-  const isInView = useInView(ref, { once: true, margin: "-100px" })
+  const { ref, isInView } = useInView()
 
   return (
-    <motion.div
+    <div
       ref={ref}
-      initial={{ opacity: 0, x: 60 }}
-      animate={isInView ? { opacity: 1, x: 0 } : { opacity: 0, x: 60 }}
-      transition={{ duration: 0.7, delay, ease: [0.25, 0.4, 0.25, 1] }}
-      className={className}
+      className={`transition-all duration-700 ease-out ${className}`}
+      style={{
+        opacity: isInView ? 1 : 0,
+        transform: isInView ? "translateX(0)" : "translateX(60px)",
+        transitionDelay: `${delay}s`,
+      }}
     >
       {children}
-    </motion.div>
+    </div>
   )
 }
 
@@ -147,30 +172,20 @@ export function StaggerContainer({
   className?: string
   staggerDelay?: number
 }) {
-  const ref = useRef(null)
-  const isInView = useInView(ref, { once: true, margin: "-100px" })
-
-  const containerVariants: Variants = {
-    hidden: { opacity: 0 },
-    visible: {
-      opacity: 1,
-      transition: {
-        staggerChildren: staggerDelay,
-        delayChildren: 0.1,
-      },
-    },
-  }
+  const { ref, isInView } = useInView()
 
   return (
-    <motion.div
+    <div
       ref={ref}
-      variants={containerVariants}
-      initial="hidden"
-      animate={isInView ? "visible" : "hidden"}
       className={className}
+      style={{
+        "--stagger-delay": `${staggerDelay}s`,
+        "--is-visible": isInView ? "1" : "0",
+      } as React.CSSProperties}
+      data-in-view={isInView}
     >
       {children}
-    </motion.div>
+    </div>
   )
 }
 
@@ -178,26 +193,36 @@ export function StaggerContainer({
 export function StaggerItem({
   children,
   className = "",
+  index = 0,
 }: {
   children: ReactNode
   className?: string
+  index?: number
 }) {
-  const itemVariants: Variants = {
-    hidden: { opacity: 0, y: 30 },
-    visible: {
-      opacity: 1,
-      y: 0,
-      transition: {
-        duration: 0.5,
-        ease: [0.25, 0.4, 0.25, 1],
-      },
-    },
-  }
+  const [isParentVisible, setIsParentVisible] = useState(false)
+
+  useEffect(() => {
+    const checkParent = () => {
+      const el = document.querySelector(`[data-in-view="true"]`)
+      if (el) setIsParentVisible(true)
+    }
+    const observer = new MutationObserver(checkParent)
+    observer.observe(document.body, { attributes: true, subtree: true })
+    checkParent()
+    return () => observer.disconnect()
+  }, [])
 
   return (
-    <motion.div variants={itemVariants} className={className}>
+    <div
+      className={`transition-all duration-500 ease-out ${className}`}
+      style={{
+        opacity: isParentVisible ? 1 : 0,
+        transform: isParentVisible ? "translateY(0)" : "translateY(30px)",
+        transitionDelay: `${index * 0.1}s`,
+      }}
+    >
       {children}
-    </motion.div>
+    </div>
   )
 }
 
@@ -212,17 +237,16 @@ export function HoverScale({
   className?: string
 }) {
   return (
-    <motion.div
-      whileHover={{ scale }}
-      transition={{ duration: 0.3, ease: "easeOut" }}
-      className={className}
+    <div
+      className={`transition-transform duration-300 ease-out hover:scale-[1.02] ${className}`}
+      style={{ "--hover-scale": scale } as React.CSSProperties}
     >
       {children}
-    </motion.div>
+    </div>
   )
 }
 
-// Text reveal animation (character by character)
+// Text reveal animation (word by word)
 export function TextReveal({
   text,
   className = "",
@@ -232,29 +256,25 @@ export function TextReveal({
   className?: string
   delay?: number
 }) {
-  const ref = useRef(null)
-  const isInView = useInView(ref, { once: true, margin: "-100px" })
-
+  const { ref, isInView } = useInView()
   const words = text.split(" ")
 
   return (
-    <motion.span ref={ref} className={className}>
+    <span ref={ref} className={className}>
       {words.map((word, i) => (
-        <motion.span
+        <span
           key={i}
-          initial={{ opacity: 0, y: 20 }}
-          animate={isInView ? { opacity: 1, y: 0 } : { opacity: 0, y: 20 }}
-          transition={{
-            duration: 0.5,
-            delay: delay + i * 0.08,
-            ease: [0.25, 0.4, 0.25, 1],
+          className="inline-block mr-[0.25em] transition-all duration-500 ease-out"
+          style={{
+            opacity: isInView ? 1 : 0,
+            transform: isInView ? "translateY(0)" : "translateY(20px)",
+            transitionDelay: `${delay + i * 0.08}s`,
           }}
-          className="inline-block mr-[0.25em]"
         >
           {word}
-        </motion.span>
+        </span>
       ))}
-    </motion.span>
+    </span>
   )
 }
 
@@ -266,16 +286,18 @@ export function ParallaxImage({
   children: ReactNode
   className?: string
 }) {
+  const { ref, isInView } = useInView()
+
   return (
-    <motion.div
-      initial={{ scale: 1.1 }}
-      whileInView={{ scale: 1 }}
-      transition={{ duration: 1.2, ease: [0.25, 0.4, 0.25, 1] }}
-      viewport={{ once: true }}
-      className={`overflow-hidden ${className}`}
+    <div
+      ref={ref}
+      className={`overflow-hidden transition-transform duration-1000 ease-out ${className}`}
+      style={{
+        transform: isInView ? "scale(1)" : "scale(1.1)",
+      }}
     >
       {children}
-    </motion.div>
+    </div>
   )
 }
 
@@ -288,36 +310,44 @@ export function MagneticWrapper({
   className?: string
 }) {
   return (
-    <motion.div
-      whileHover={{ scale: 1.05 }}
-      whileTap={{ scale: 0.98 }}
-      transition={{ type: "spring", stiffness: 400, damping: 17 }}
-      className={className}
-    >
+    <div className={`transition-transform duration-200 hover:scale-105 active:scale-98 ${className}`}>
       {children}
-    </motion.div>
+    </div>
   )
 }
 
-// Line draw animation
-export function LineReveal({
+// Animated background orb
+export function AnimatedOrb({
   className = "",
-  delay = 0,
+  color = "from-muted/40 to-transparent",
 }: {
   className?: string
-  delay?: number
+  color?: string
 }) {
-  const ref = useRef(null)
-  const isInView = useInView(ref, { once: true, margin: "-100px" })
+  return (
+    <div
+      className={`absolute rounded-full blur-3xl bg-gradient-to-br ${color} animate-pulse-slow ${className}`}
+    />
+  )
+}
+
+// Scroll indicator
+export function ScrollIndicator() {
+  const [visible, setVisible] = useState(false)
+
+  useEffect(() => {
+    const timer = setTimeout(() => setVisible(true), 1500)
+    return () => clearTimeout(timer)
+  }, [])
 
   return (
-    <motion.div
-      ref={ref}
-      initial={{ scaleX: 0 }}
-      animate={isInView ? { scaleX: 1 } : { scaleX: 0 }}
-      transition={{ duration: 0.8, delay, ease: [0.25, 0.4, 0.25, 1] }}
-      style={{ originX: 0 }}
-      className={`h-px bg-border ${className}`}
-    />
+    <div
+      className="absolute bottom-12 left-1/2 -translate-x-1/2 transition-opacity duration-500"
+      style={{ opacity: visible ? 1 : 0 }}
+    >
+      <div className="w-6 h-10 border-2 border-foreground/20 rounded-full flex items-start justify-center p-1.5">
+        <div className="w-1.5 h-1.5 bg-foreground/40 rounded-full animate-bounce" />
+      </div>
+    </div>
   )
 }

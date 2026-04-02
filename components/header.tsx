@@ -2,15 +2,16 @@
 
 import Link from "next/link"
 import { useState, useEffect } from "react"
-import { motion, AnimatePresence } from "framer-motion"
 import { Menu, X } from "lucide-react"
 import { Button } from "@/components/ui/button"
 
 export function Header() {
   const [isMenuOpen, setIsMenuOpen] = useState(false)
   const [isScrolled, setIsScrolled] = useState(false)
+  const [isLoaded, setIsLoaded] = useState(false)
 
   useEffect(() => {
+    setIsLoaded(true)
     const handleScroll = () => {
       setIsScrolled(window.scrollY > 20)
     }
@@ -25,39 +26,36 @@ export function Header() {
   ]
 
   return (
-    <motion.header
-      initial={{ y: -100 }}
-      animate={{ y: 0 }}
-      transition={{ duration: 0.6, ease: [0.25, 0.4, 0.25, 1] }}
+    <header
       className={`fixed top-0 left-0 right-0 z-50 transition-all duration-500 ${
         isScrolled
           ? "bg-background/95 backdrop-blur-xl border-b border-border/50 shadow-sm"
           : "bg-transparent"
       }`}
+      style={{
+        transform: isLoaded ? "translateY(0)" : "translateY(-100%)",
+        transition: "transform 0.6s cubic-bezier(0.25, 0.4, 0.25, 1), background-color 0.5s, border-color 0.5s",
+      }}
     >
       <div className="container mx-auto px-6 md:px-8">
         <div className="flex items-center justify-between h-20 md:h-24">
           <Link href="/" className="relative group">
-            <motion.span
-              className="text-2xl md:text-3xl font-semibold tracking-tight"
-              whileHover={{ scale: 1.02 }}
-              transition={{ type: "spring", stiffness: 400, damping: 17 }}
-            >
+            <span className="text-2xl md:text-3xl font-semibold tracking-tight transition-transform duration-200 hover:scale-[1.02] inline-block">
               AERA
-            </motion.span>
-            <motion.span
-              className="absolute -bottom-1 left-0 w-0 h-0.5 bg-foreground group-hover:w-full transition-all duration-300"
-            />
+            </span>
+            <span className="absolute -bottom-1 left-0 w-0 h-0.5 bg-foreground group-hover:w-full transition-all duration-300" />
           </Link>
 
           {/* Desktop Navigation */}
           <nav className="hidden md:flex items-center gap-12">
             {navLinks.map((link, index) => (
-              <motion.div
+              <div
                 key={link.href}
-                initial={{ opacity: 0, y: -20 }}
-                animate={{ opacity: 1, y: 0 }}
-                transition={{ duration: 0.5, delay: 0.1 + index * 0.1 }}
+                style={{
+                  opacity: isLoaded ? 1 : 0,
+                  transform: isLoaded ? "translateY(0)" : "translateY(-20px)",
+                  transition: `all 0.5s cubic-bezier(0.25, 0.4, 0.25, 1) ${0.1 + index * 0.1}s`,
+                }}
               >
                 <Link
                   href={link.href}
@@ -66,15 +64,16 @@ export function Header() {
                   {link.label}
                   <span className="absolute bottom-0 left-0 w-0 h-px bg-foreground group-hover:w-full transition-all duration-300" />
                 </Link>
-              </motion.div>
+              </div>
             ))}
           </nav>
 
           {/* Mobile Menu Button */}
-          <motion.div
-            initial={{ opacity: 0 }}
-            animate={{ opacity: 1 }}
-            transition={{ delay: 0.3 }}
+          <div
+            style={{
+              opacity: isLoaded ? 1 : 0,
+              transition: "opacity 0.5s 0.3s",
+            }}
           >
             <Button
               variant="ghost"
@@ -83,67 +82,54 @@ export function Header() {
               onClick={() => setIsMenuOpen(!isMenuOpen)}
               aria-label={isMenuOpen ? "Fermer le menu" : "Ouvrir le menu"}
             >
-              <AnimatePresence mode="wait">
-                {isMenuOpen ? (
-                  <motion.div
-                    key="close"
-                    initial={{ opacity: 0, rotate: -90 }}
-                    animate={{ opacity: 1, rotate: 0 }}
-                    exit={{ opacity: 0, rotate: 90 }}
-                    transition={{ duration: 0.2 }}
-                  >
-                    <X className="h-5 w-5" />
-                  </motion.div>
-                ) : (
-                  <motion.div
-                    key="menu"
-                    initial={{ opacity: 0, rotate: 90 }}
-                    animate={{ opacity: 1, rotate: 0 }}
-                    exit={{ opacity: 0, rotate: -90 }}
-                    transition={{ duration: 0.2 }}
-                  >
-                    <Menu className="h-5 w-5" />
-                  </motion.div>
-                )}
-              </AnimatePresence>
+              <span
+                className={`absolute transition-all duration-200 ${
+                  isMenuOpen ? "opacity-0 rotate-90" : "opacity-100 rotate-0"
+                }`}
+              >
+                <Menu className="h-5 w-5" />
+              </span>
+              <span
+                className={`absolute transition-all duration-200 ${
+                  isMenuOpen ? "opacity-100 rotate-0" : "opacity-0 -rotate-90"
+                }`}
+              >
+                <X className="h-5 w-5" />
+              </span>
             </Button>
-          </motion.div>
+          </div>
         </div>
 
         {/* Mobile Navigation */}
-        <AnimatePresence>
-          {isMenuOpen && (
-            <motion.nav
-              initial={{ opacity: 0, height: 0 }}
-              animate={{ opacity: 1, height: "auto" }}
-              exit={{ opacity: 0, height: 0 }}
-              transition={{ duration: 0.3, ease: [0.25, 0.4, 0.25, 1] }}
-              className="md:hidden overflow-hidden"
-            >
-              <div className="py-6 border-t border-border/50">
-                <div className="flex flex-col gap-1">
-                  {navLinks.map((link, index) => (
-                    <motion.div
-                      key={link.href}
-                      initial={{ opacity: 0, x: -20 }}
-                      animate={{ opacity: 1, x: 0 }}
-                      transition={{ delay: index * 0.1 }}
-                    >
-                      <Link
-                        href={link.href}
-                        className="block py-3 text-lg font-medium text-muted-foreground hover:text-foreground transition-colors"
-                        onClick={() => setIsMenuOpen(false)}
-                      >
-                        {link.label}
-                      </Link>
-                    </motion.div>
-                  ))}
+        <nav
+          className={`md:hidden overflow-hidden transition-all duration-300 ease-out ${
+            isMenuOpen ? "max-h-64 opacity-100" : "max-h-0 opacity-0"
+          }`}
+        >
+          <div className="py-6 border-t border-border/50">
+            <div className="flex flex-col gap-1">
+              {navLinks.map((link, index) => (
+                <div
+                  key={link.href}
+                  style={{
+                    opacity: isMenuOpen ? 1 : 0,
+                    transform: isMenuOpen ? "translateX(0)" : "translateX(-20px)",
+                    transition: `all 0.3s ease-out ${index * 0.1}s`,
+                  }}
+                >
+                  <Link
+                    href={link.href}
+                    className="block py-3 text-lg font-medium text-muted-foreground hover:text-foreground transition-colors"
+                    onClick={() => setIsMenuOpen(false)}
+                  >
+                    {link.label}
+                  </Link>
                 </div>
-              </div>
-            </motion.nav>
-          )}
-        </AnimatePresence>
+              ))}
+            </div>
+          </div>
+        </nav>
       </div>
-    </motion.header>
+    </header>
   )
 }

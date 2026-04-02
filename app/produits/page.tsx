@@ -1,17 +1,15 @@
 "use client"
 
 import Image from "next/image"
-import { motion } from "framer-motion"
 import { Card, CardContent } from "@/components/ui/card"
 import { Badge } from "@/components/ui/badge"
 import {
   FadeUp,
   SlideInLeft,
   SlideInRight,
-  StaggerContainer,
-  StaggerItem,
   HoverScale,
   ParallaxImage,
+  AnimatedOrb,
 } from "@/components/animations"
 
 const products = [
@@ -51,10 +49,10 @@ const products = [
 ]
 
 const specs = [
-  { label: "20 pouches par boite", icon: "O" },
-  { label: "Format slim confortable", icon: "O" },
-  { label: "Duree d'action: environ 45 minutes", icon: "O" },
-  { label: "Sans tabac, sans fumee", icon: "O" },
+  { label: "20 pouches par boite" },
+  { label: "Format slim confortable" },
+  { label: "Duree d'action: environ 45 minutes" },
+  { label: "Sans tabac, sans fumee" },
 ]
 
 export default function ProduitsPage() {
@@ -62,11 +60,7 @@ export default function ProduitsPage() {
     <div className="min-h-screen pt-24 overflow-hidden">
       {/* Hero Section */}
       <section className="py-20 md:py-32 relative">
-        <motion.div
-          className="absolute top-0 right-0 w-96 h-96 bg-gradient-to-br from-muted/50 to-transparent rounded-full blur-3xl -z-10"
-          animate={{ scale: [1, 1.1, 1], opacity: [0.3, 0.5, 0.3] }}
-          transition={{ duration: 8, repeat: Infinity, ease: "easeInOut" }}
-        />
+        <AnimatedOrb className="top-0 right-0 w-96 h-96" />
         
         <div className="container mx-auto px-6 md:px-8">
           <FadeUp>
@@ -89,37 +83,28 @@ export default function ProduitsPage() {
       {/* Products Grid */}
       <section className="py-20 md:py-32">
         <div className="container mx-auto px-6 md:px-8">
-          <StaggerContainer className="grid lg:grid-cols-3 gap-10" staggerDelay={0.2}>
-            {products.map((product) => (
-              <StaggerItem key={product.name}>
-                <HoverScale scale={1.02}>
+          <div className="grid lg:grid-cols-3 gap-10">
+            {products.map((product, index) => (
+              <FadeUp key={product.name} delay={index * 0.2}>
+                <HoverScale>
                   <Card className="overflow-hidden border-0 shadow-2xl group h-full">
                     <div className="relative aspect-[3/4] overflow-hidden">
-                      <motion.div
-                        className="absolute inset-0"
-                        whileHover={{ scale: 1.05 }}
-                        transition={{ duration: 0.7, ease: [0.25, 0.4, 0.25, 1] }}
-                      >
+                      <div className="absolute inset-0 transition-transform duration-700 group-hover:scale-105">
                         <Image
                           src={product.image}
                           alt={`AERA ${product.name} - ${product.strength}`}
                           fill
                           className="object-cover"
                         />
-                      </motion.div>
+                      </div>
                       <div className="absolute inset-0 bg-gradient-to-t from-black/70 via-black/20 to-transparent" />
                       
                       {/* Floating badge */}
-                      <motion.div
-                        className="absolute top-6 right-6"
-                        initial={{ opacity: 0, y: -10 }}
-                        animate={{ opacity: 1, y: 0 }}
-                        transition={{ delay: 0.3 }}
-                      >
+                      <div className="absolute top-6 right-6">
                         <Badge className={`${product.bgAccent} ${product.textColor} border-0 text-xs font-medium px-3 py-1`}>
                           {product.strengthLabel}
                         </Badge>
-                      </motion.div>
+                      </div>
                     </div>
                     
                     <CardContent className="p-8">
@@ -136,25 +121,24 @@ export default function ProduitsPage() {
                       <p className="text-muted-foreground mb-6 leading-relaxed">{product.description}</p>
                       
                       <div className="flex flex-wrap gap-2">
-                        {product.features.map((feature, index) => (
-                          <motion.span
+                        {product.features.map((feature, featureIndex) => (
+                          <span
                             key={feature}
-                            initial={{ opacity: 0, scale: 0.8 }}
-                            whileInView={{ opacity: 1, scale: 1 }}
-                            transition={{ delay: index * 0.1 }}
-                            viewport={{ once: true }}
-                            className="text-xs px-4 py-2 bg-muted rounded-full text-muted-foreground"
+                            className="text-xs px-4 py-2 bg-muted rounded-full text-muted-foreground transition-all duration-300"
+                            style={{
+                              animationDelay: `${featureIndex * 0.1}s`,
+                            }}
                           >
                             {feature}
-                          </motion.span>
+                          </span>
                         ))}
                       </div>
                     </CardContent>
                   </Card>
                 </HoverScale>
-              </StaggerItem>
+              </FadeUp>
             ))}
-          </StaggerContainer>
+          </div>
         </div>
       </section>
 
@@ -175,11 +159,7 @@ export default function ProduitsPage() {
                 </ParallaxImage>
                 
                 {/* Decorative elements */}
-                <motion.div
-                  className="absolute -bottom-8 -right-8 w-48 h-48 bg-gradient-to-br from-teal-400/20 to-emerald-500/20 rounded-3xl -z-10"
-                  animate={{ rotate: [0, 5, 0] }}
-                  transition={{ duration: 6, repeat: Infinity, ease: "easeInOut" }}
-                />
+                <div className="absolute -bottom-8 -right-8 w-48 h-48 bg-gradient-to-br from-teal-400/20 to-emerald-500/20 rounded-3xl -z-10 animate-pulse" />
               </div>
             </SlideInLeft>
             
@@ -199,17 +179,16 @@ export default function ProduitsPage() {
                 
                 <ul className="space-y-5">
                   {specs.map((spec, index) => (
-                    <motion.li
+                    <li
                       key={spec.label}
-                      initial={{ opacity: 0, x: -20 }}
-                      whileInView={{ opacity: 1, x: 0 }}
-                      transition={{ delay: index * 0.1 }}
-                      viewport={{ once: true }}
-                      className="flex items-center gap-4"
+                      className="flex items-center gap-4 transition-all duration-500"
+                      style={{
+                        animationDelay: `${index * 0.1}s`,
+                      }}
                     >
                       <div className="w-2 h-2 rounded-full bg-foreground" />
                       <span className="text-foreground">{spec.label}</span>
-                    </motion.li>
+                    </li>
                   ))}
                 </ul>
               </div>
@@ -255,11 +234,7 @@ export default function ProduitsPage() {
                     />
                   </ParallaxImage>
                   
-                  <motion.div
-                    className="absolute -top-6 -left-6 w-32 h-32 bg-gradient-to-br from-orange-400/20 to-red-500/20 rounded-full -z-10"
-                    animate={{ scale: [1, 1.2, 1] }}
-                    transition={{ duration: 5, repeat: Infinity, ease: "easeInOut" }}
-                  />
+                  <div className="absolute -top-6 -left-6 w-32 h-32 bg-gradient-to-br from-orange-400/20 to-red-500/20 rounded-full -z-10 animate-pulse" />
                 </div>
               </FadeUp>
             </div>

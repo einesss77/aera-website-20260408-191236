@@ -1,7 +1,6 @@
 "use client"
 
 import { useState } from "react"
-import { motion, AnimatePresence } from "framer-motion"
 import { Button } from "@/components/ui/button"
 import { Input } from "@/components/ui/input"
 import { Label } from "@/components/ui/label"
@@ -16,10 +15,9 @@ import {
 import { Mail, MapPin, Send, CheckCircle, ArrowRight } from "lucide-react"
 import {
   FadeUp,
-  StaggerContainer,
-  StaggerItem,
   HoverScale,
   MagneticWrapper,
+  AnimatedOrb,
 } from "@/components/animations"
 
 const faqs = [
@@ -70,11 +68,7 @@ export default function ContactPage() {
     <div className="min-h-screen pt-24 overflow-hidden">
       {/* Hero Section */}
       <section className="py-20 md:py-32 relative">
-        <motion.div
-          className="absolute top-0 left-1/4 w-96 h-96 bg-gradient-to-br from-muted/50 to-transparent rounded-full blur-3xl -z-10"
-          animate={{ scale: [1, 1.1, 1], opacity: [0.3, 0.5, 0.3] }}
-          transition={{ duration: 8, repeat: Infinity, ease: "easeInOut" }}
-        />
+        <AnimatedOrb className="top-0 left-1/4 w-96 h-96" />
         
         <div className="container mx-auto px-6 md:px-8">
           <FadeUp>
@@ -112,12 +106,12 @@ export default function ContactPage() {
             <FadeUp delay={0.2}>
               <Accordion type="single" collapsible className="w-full">
                 {faqs.map((faq, index) => (
-                  <motion.div
+                  <div
                     key={index}
-                    initial={{ opacity: 0, y: 20 }}
-                    whileInView={{ opacity: 1, y: 0 }}
-                    transition={{ delay: index * 0.1 }}
-                    viewport={{ once: true }}
+                    className="transition-all duration-500"
+                    style={{
+                      animationDelay: `${index * 0.1}s`,
+                    }}
                   >
                     <AccordionItem value={`item-${index}`} className="border-b border-border/50">
                       <AccordionTrigger className="text-left text-base md:text-lg font-medium py-6 hover:no-underline group">
@@ -129,7 +123,7 @@ export default function ContactPage() {
                         {faq.answer}
                       </AccordionContent>
                     </AccordionItem>
-                  </motion.div>
+                  </div>
                 ))}
               </Accordion>
             </FadeUp>
@@ -159,18 +153,14 @@ export default function ContactPage() {
                   <h3 className="text-xl font-semibold mb-8">Nos Coordonnees</h3>
                 </FadeUp>
                 
-                <StaggerContainer className="space-y-6" staggerDelay={0.15}>
-                  <StaggerItem>
+                <div className="space-y-6">
+                  <FadeUp delay={0.1}>
                     <HoverScale>
                       <Card className="border-0 shadow-xl bg-background">
                         <CardContent className="p-8 flex items-start gap-6">
-                          <motion.div
-                            whileHover={{ rotate: [0, -10, 10, 0] }}
-                            transition={{ duration: 0.5 }}
-                            className="w-14 h-14 rounded-2xl bg-foreground/5 flex items-center justify-center shrink-0"
-                          >
+                          <div className="w-14 h-14 rounded-2xl bg-foreground/5 flex items-center justify-center shrink-0 transition-transform duration-300 hover:rotate-6">
                             <MapPin className="h-6 w-6 text-foreground" />
-                          </motion.div>
+                          </div>
                           <div>
                             <h4 className="font-semibold mb-2">Adresse</h4>
                             <p className="text-muted-foreground">
@@ -180,19 +170,15 @@ export default function ContactPage() {
                         </CardContent>
                       </Card>
                     </HoverScale>
-                  </StaggerItem>
+                  </FadeUp>
                   
-                  <StaggerItem>
+                  <FadeUp delay={0.2}>
                     <HoverScale>
                       <Card className="border-0 shadow-xl bg-background">
                         <CardContent className="p-8 flex items-start gap-6">
-                          <motion.div
-                            whileHover={{ rotate: [0, -10, 10, 0] }}
-                            transition={{ duration: 0.5 }}
-                            className="w-14 h-14 rounded-2xl bg-foreground/5 flex items-center justify-center shrink-0"
-                          >
+                          <div className="w-14 h-14 rounded-2xl bg-foreground/5 flex items-center justify-center shrink-0 transition-transform duration-300 hover:rotate-6">
                             <Mail className="h-6 w-6 text-foreground" />
-                          </motion.div>
+                          </div>
                           <div>
                             <h4 className="font-semibold mb-2">Email</h4>
                             <a
@@ -205,130 +191,111 @@ export default function ContactPage() {
                         </CardContent>
                       </Card>
                     </HoverScale>
-                  </StaggerItem>
-                </StaggerContainer>
+                  </FadeUp>
+                </div>
               </div>
 
               {/* Contact Form */}
               <FadeUp delay={0.3}>
                 <Card className="border-0 shadow-2xl bg-background overflow-hidden">
                   <CardContent className="p-10">
-                    <AnimatePresence mode="wait">
-                      {isSubmitted ? (
-                        <motion.div
-                          key="success"
-                          initial={{ opacity: 0, scale: 0.9 }}
-                          animate={{ opacity: 1, scale: 1 }}
-                          exit={{ opacity: 0, scale: 0.9 }}
-                          className="text-center py-12"
-                        >
-                          <motion.div
-                            initial={{ scale: 0 }}
-                            animate={{ scale: 1 }}
-                            transition={{ type: "spring", stiffness: 200, damping: 15 }}
+                    {isSubmitted ? (
+                      <div className="text-center py-12 animate-in fade-in zoom-in duration-300">
+                        <div className="transform transition-transform duration-500 animate-bounce">
+                          <CheckCircle className="h-20 w-20 text-emerald-500 mx-auto mb-6" />
+                        </div>
+                        <h3 className="text-2xl font-semibold mb-3">
+                          Message envoye !
+                        </h3>
+                        <p className="text-muted-foreground">
+                          Nous vous repondrons dans les plus brefs delais.
+                        </p>
+                      </div>
+                    ) : (
+                      <form onSubmit={handleSubmit} className="space-y-8">
+                        <div className="space-y-3">
+                          <Label 
+                            htmlFor="name" 
+                            className={`text-sm transition-colors duration-300 ${
+                              focusedField === 'name' ? 'text-foreground' : 'text-muted-foreground'
+                            }`}
                           >
-                            <CheckCircle className="h-20 w-20 text-emerald-500 mx-auto mb-6" />
-                          </motion.div>
-                          <h3 className="text-2xl font-semibold mb-3">
-                            Message envoye !
-                          </h3>
-                          <p className="text-muted-foreground">
-                            Nous vous repondrons dans les plus brefs delais.
-                          </p>
-                        </motion.div>
-                      ) : (
-                        <motion.form
-                          key="form"
-                          initial={{ opacity: 0 }}
-                          animate={{ opacity: 1 }}
-                          exit={{ opacity: 0 }}
-                          onSubmit={handleSubmit}
-                          className="space-y-8"
-                        >
-                          <div className="space-y-3">
-                            <Label 
-                              htmlFor="name" 
-                              className={`text-sm transition-colors duration-300 ${
-                                focusedField === 'name' ? 'text-foreground' : 'text-muted-foreground'
-                              }`}
-                            >
-                              Nom
-                            </Label>
-                            <Input
-                              id="name"
-                              placeholder="Votre nom"
-                              value={formState.name}
-                              onChange={(e) =>
-                                setFormState({ ...formState, name: e.target.value })
-                              }
-                              onFocus={() => setFocusedField('name')}
-                              onBlur={() => setFocusedField(null)}
-                              required
-                              className="h-14 px-5 rounded-xl border-border/50 focus:border-foreground transition-all duration-300"
-                            />
-                          </div>
-                          
-                          <div className="space-y-3">
-                            <Label 
-                              htmlFor="email"
-                              className={`text-sm transition-colors duration-300 ${
-                                focusedField === 'email' ? 'text-foreground' : 'text-muted-foreground'
-                              }`}
-                            >
-                              Email
-                            </Label>
-                            <Input
-                              id="email"
-                              type="email"
-                              placeholder="votre@email.com"
-                              value={formState.email}
-                              onChange={(e) =>
-                                setFormState({ ...formState, email: e.target.value })
-                              }
-                              onFocus={() => setFocusedField('email')}
-                              onBlur={() => setFocusedField(null)}
-                              required
-                              className="h-14 px-5 rounded-xl border-border/50 focus:border-foreground transition-all duration-300"
-                            />
-                          </div>
-                          
-                          <div className="space-y-3">
-                            <Label 
-                              htmlFor="message"
-                              className={`text-sm transition-colors duration-300 ${
-                                focusedField === 'message' ? 'text-foreground' : 'text-muted-foreground'
-                              }`}
-                            >
-                              Message
-                            </Label>
-                            <Textarea
-                              id="message"
-                              placeholder="Votre message..."
-                              rows={5}
-                              value={formState.message}
-                              onChange={(e) =>
-                                setFormState({
-                                  ...formState,
-                                  message: e.target.value,
-                                })
-                              }
-                              onFocus={() => setFocusedField('message')}
-                              onBlur={() => setFocusedField(null)}
-                              required
-                              className="px-5 py-4 rounded-xl border-border/50 focus:border-foreground transition-all duration-300 resize-none"
-                            />
-                          </div>
-                          
-                          <MagneticWrapper className="pt-4">
-                            <Button type="submit" className="w-full h-14 rounded-xl text-base" size="lg">
-                              <Send className="h-4 w-4 mr-3" />
-                              Envoyer le message
-                              <ArrowRight className="h-4 w-4 ml-3" />
-                            </Button>
-                          </MagneticWrapper>
-                        </motion.form>
-                      )}
-                    </AnimatePresence>
+                            Nom
+                          </Label>
+                          <Input
+                            id="name"
+                            placeholder="Votre nom"
+                            value={formState.name}
+                            onChange={(e) =>
+                              setFormState({ ...formState, name: e.target.value })
+                            }
+                            onFocus={() => setFocusedField('name')}
+                            onBlur={() => setFocusedField(null)}
+                            required
+                            className="h-14 px-5 rounded-xl border-border/50 focus:border-foreground transition-all duration-300"
+                          />
+                        </div>
+                        
+                        <div className="space-y-3">
+                          <Label 
+                            htmlFor="email"
+                            className={`text-sm transition-colors duration-300 ${
+                              focusedField === 'email' ? 'text-foreground' : 'text-muted-foreground'
+                            }`}
+                          >
+                            Email
+                          </Label>
+                          <Input
+                            id="email"
+                            type="email"
+                            placeholder="votre@email.com"
+                            value={formState.email}
+                            onChange={(e) =>
+                              setFormState({ ...formState, email: e.target.value })
+                            }
+                            onFocus={() => setFocusedField('email')}
+                            onBlur={() => setFocusedField(null)}
+                            required
+                            className="h-14 px-5 rounded-xl border-border/50 focus:border-foreground transition-all duration-300"
+                          />
+                        </div>
+                        
+                        <div className="space-y-3">
+                          <Label 
+                            htmlFor="message"
+                            className={`text-sm transition-colors duration-300 ${
+                              focusedField === 'message' ? 'text-foreground' : 'text-muted-foreground'
+                            }`}
+                          >
+                            Message
+                          </Label>
+                          <Textarea
+                            id="message"
+                            placeholder="Votre message..."
+                            rows={5}
+                            value={formState.message}
+                            onChange={(e) =>
+                              setFormState({
+                                ...formState,
+                                message: e.target.value,
+                              })
+                            }
+                            onFocus={() => setFocusedField('message')}
+                            onBlur={() => setFocusedField(null)}
+                            required
+                            className="px-5 py-4 rounded-xl border-border/50 focus:border-foreground transition-all duration-300 resize-none"
+                          />
+                        </div>
+                        
+                        <MagneticWrapper className="pt-4">
+                          <Button type="submit" className="w-full h-14 rounded-xl text-base" size="lg">
+                            <Send className="h-4 w-4 mr-3" />
+                            Envoyer le message
+                            <ArrowRight className="h-4 w-4 ml-3" />
+                          </Button>
+                        </MagneticWrapper>
+                      </form>
+                    )}
                   </CardContent>
                 </Card>
               </FadeUp>
