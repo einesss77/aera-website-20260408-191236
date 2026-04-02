@@ -132,146 +132,165 @@ export default function ContactPage() {
       </section>
 
       {/* Contact Section */}
-      <section className="py-20 md:py-32 bg-muted/30">
-        <div className="container mx-auto px-6 md:px-8">
+      <section className="py-20 md:py-32 relative overflow-hidden">
+        {/* Background */}
+        <div className="absolute inset-0 bg-foreground" />
+        
+        {/* Subtle pattern */}
+        <div className="absolute inset-0 opacity-[0.02]" style={{
+          backgroundImage: `radial-gradient(circle at 1px 1px, white 1px, transparent 0)`,
+          backgroundSize: '32px 32px'
+        }} />
+        
+        <div className="container mx-auto px-6 md:px-8 relative z-10">
           <div className="max-w-6xl mx-auto">
             <FadeUp>
               <div className="text-center mb-16">
-                <span className="inline-block text-xs font-medium tracking-widest uppercase text-muted-foreground mb-6">
+                <span className="inline-block text-xs font-medium tracking-widest uppercase text-background/40 mb-6">
                   Contact
                 </span>
-                <h2 className="text-3xl md:text-4xl font-semibold tracking-tight">
+                <h2 className="text-3xl md:text-4xl font-semibold tracking-tight text-background">
                   Contactez-nous
                 </h2>
               </div>
             </FadeUp>
             
-            <div className="grid lg:grid-cols-2 gap-12 lg:gap-16">
-              {/* Contact Info */}
-              <div>
+            <div className="grid lg:grid-cols-5 gap-8 lg:gap-12">
+              {/* Contact Info - Left Side */}
+              <div className="lg:col-span-2 space-y-8">
                 <FadeUp>
-                  <h3 className="text-xl font-semibold mb-8">Nos Coordonnees</h3>
+                  <div className="space-y-2">
+                    <p className="text-background/60 text-sm uppercase tracking-widest">
+                      Parlons ensemble
+                    </p>
+                    <h3 className="text-2xl md:text-3xl font-semibold text-background leading-tight">
+                      Une question ? Un partenariat ? Ecrivez-nous.
+                    </h3>
+                  </div>
                 </FadeUp>
                 
-                <div className="space-y-6">
-                  <FadeUp delay={0.1}>
-                    <HoverScale>
-                      <Card className="border-0 shadow-xl bg-background">
-                        <CardContent className="p-8 flex items-start gap-6">
-                          <div className="w-14 h-14 rounded-2xl bg-foreground/5 flex items-center justify-center shrink-0 transition-transform duration-300 hover:rotate-6">
-                            <MapPin className="h-6 w-6 text-foreground" />
-                          </div>
-                          <div>
-                            <h4 className="font-semibold mb-2">Adresse</h4>
-                            <p className="text-muted-foreground">
-                              Draria El Achour, Alger
-                            </p>
-                          </div>
-                        </CardContent>
-                      </Card>
-                    </HoverScale>
-                  </FadeUp>
-                  
-                  <FadeUp delay={0.2}>
-                    <HoverScale>
-                      <Card className="border-0 shadow-xl bg-background">
-                        <CardContent className="p-8 flex items-start gap-6">
-                          <div className="w-14 h-14 rounded-2xl bg-foreground/5 flex items-center justify-center shrink-0 transition-transform duration-300 hover:rotate-6">
-                            <Mail className="h-6 w-6 text-foreground" />
-                          </div>
-                          <div>
-                            <h4 className="font-semibold mb-2">Email</h4>
-                            <a
-                              href="mailto:contact@aeratobacco.com"
-                              className="text-muted-foreground hover:text-foreground transition-colors duration-300"
-                            >
-                              contact@aeratobacco.com
-                            </a>
-                          </div>
-                        </CardContent>
-                      </Card>
-                    </HoverScale>
-                  </FadeUp>
-                </div>
+                <FadeUp delay={0.1}>
+                  <div className="space-y-6 pt-4">
+                    {/* Address */}
+                    <div className="group">
+                      <div className="flex items-start gap-4">
+                        <div className="w-12 h-12 rounded-xl bg-white/10 flex items-center justify-center shrink-0 transition-all duration-300 group-hover:bg-white/20 group-hover:scale-105">
+                          <MapPin className="h-5 w-5 text-background" strokeWidth={1.5} />
+                        </div>
+                        <div>
+                          <p className="text-background/40 text-xs uppercase tracking-wider mb-1">Adresse</p>
+                          <p className="text-background font-medium">Draria El Achour, Alger</p>
+                        </div>
+                      </div>
+                    </div>
+                    
+                    {/* Email */}
+                    <div className="group">
+                      <div className="flex items-start gap-4">
+                        <div className="w-12 h-12 rounded-xl bg-white/10 flex items-center justify-center shrink-0 transition-all duration-300 group-hover:bg-white/20 group-hover:scale-105">
+                          <Mail className="h-5 w-5 text-background" strokeWidth={1.5} />
+                        </div>
+                        <div>
+                          <p className="text-background/40 text-xs uppercase tracking-wider mb-1">Email</p>
+                          <a
+                            href="mailto:contact@aeratobacco.com"
+                            className="text-background font-medium hover:text-background/80 transition-colors duration-300"
+                          >
+                            contact@aeratobacco.com
+                          </a>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                </FadeUp>
+                
+                {/* Decorative element */}
+                <FadeUp delay={0.2}>
+                  <div className="hidden lg:block pt-8">
+                    <div className="h-px w-full bg-gradient-to-r from-white/20 via-white/10 to-transparent" />
+                    <p className="text-background/30 text-sm mt-6 leading-relaxed">
+                      Notre equipe repond generalement sous 24 heures ouvrables.
+                    </p>
+                  </div>
+                </FadeUp>
               </div>
 
-              {/* Contact Form */}
-              <FadeUp delay={0.3}>
-                <Card className="border-0 shadow-2xl bg-background overflow-hidden">
-                  <CardContent className="p-10">
+              {/* Contact Form - Right Side */}
+              <FadeUp delay={0.2} className="lg:col-span-3">
+                <div className="relative">
+                  {/* Glow effect */}
+                  <div className="absolute -inset-1 rounded-3xl bg-gradient-to-b from-white/10 to-transparent opacity-50 blur-xl" />
+                  
+                  <div className="relative rounded-3xl border border-white/10 bg-white/5 backdrop-blur-sm p-8 md:p-10">
                     {isSubmitted ? (
                       <div className="text-center py-12 animate-in fade-in zoom-in duration-300">
-                        <div className="transform transition-transform duration-500 animate-bounce">
-                          <CheckCircle className="h-20 w-20 text-emerald-500 mx-auto mb-6" />
+                        <div className="w-20 h-20 rounded-full bg-emerald-500/20 flex items-center justify-center mx-auto mb-6">
+                          <CheckCircle className="h-10 w-10 text-emerald-400" />
                         </div>
-                        <h3 className="text-2xl font-semibold mb-3">
+                        <h3 className="text-2xl font-semibold mb-3 text-background">
                           Message envoye !
                         </h3>
-                        <p className="text-muted-foreground">
+                        <p className="text-background/60">
                           Nous vous repondrons dans les plus brefs delais.
                         </p>
                       </div>
                     ) : (
-                      <form onSubmit={handleSubmit} className="space-y-8">
-                        <div className="space-y-3">
-                          <Label 
-                            htmlFor="name" 
-                            className={`text-sm transition-colors duration-300 ${
-                              focusedField === 'name' ? 'text-foreground' : 'text-muted-foreground'
-                            }`}
-                          >
-                            Nom
-                          </Label>
-                          <Input
-                            id="name"
-                            placeholder="Votre nom"
-                            value={formState.name}
-                            onChange={(e) =>
-                              setFormState({ ...formState, name: e.target.value })
-                            }
-                            onFocus={() => setFocusedField('name')}
-                            onBlur={() => setFocusedField(null)}
-                            required
-                            className="h-14 px-5 rounded-xl border-border/50 focus:border-foreground transition-all duration-300"
-                          />
+                      <form onSubmit={handleSubmit} className="space-y-6">
+                        <div className="grid md:grid-cols-2 gap-6">
+                          <div className="space-y-2">
+                            <Label 
+                              htmlFor="name" 
+                              className="text-xs uppercase tracking-wider text-background/50"
+                            >
+                              Nom
+                            </Label>
+                            <Input
+                              id="name"
+                              placeholder="Votre nom"
+                              value={formState.name}
+                              onChange={(e) =>
+                                setFormState({ ...formState, name: e.target.value })
+                              }
+                              onFocus={() => setFocusedField('name')}
+                              onBlur={() => setFocusedField(null)}
+                              required
+                              className="h-14 px-5 rounded-xl bg-white/5 border-white/10 text-background placeholder:text-background/30 focus:border-white/30 focus:bg-white/10 transition-all duration-300"
+                            />
+                          </div>
+                          
+                          <div className="space-y-2">
+                            <Label 
+                              htmlFor="email"
+                              className="text-xs uppercase tracking-wider text-background/50"
+                            >
+                              Email
+                            </Label>
+                            <Input
+                              id="email"
+                              type="email"
+                              placeholder="votre@email.com"
+                              value={formState.email}
+                              onChange={(e) =>
+                                setFormState({ ...formState, email: e.target.value })
+                              }
+                              onFocus={() => setFocusedField('email')}
+                              onBlur={() => setFocusedField(null)}
+                              required
+                              className="h-14 px-5 rounded-xl bg-white/5 border-white/10 text-background placeholder:text-background/30 focus:border-white/30 focus:bg-white/10 transition-all duration-300"
+                            />
+                          </div>
                         </div>
                         
-                        <div className="space-y-3">
-                          <Label 
-                            htmlFor="email"
-                            className={`text-sm transition-colors duration-300 ${
-                              focusedField === 'email' ? 'text-foreground' : 'text-muted-foreground'
-                            }`}
-                          >
-                            Email
-                          </Label>
-                          <Input
-                            id="email"
-                            type="email"
-                            placeholder="votre@email.com"
-                            value={formState.email}
-                            onChange={(e) =>
-                              setFormState({ ...formState, email: e.target.value })
-                            }
-                            onFocus={() => setFocusedField('email')}
-                            onBlur={() => setFocusedField(null)}
-                            required
-                            className="h-14 px-5 rounded-xl border-border/50 focus:border-foreground transition-all duration-300"
-                          />
-                        </div>
-                        
-                        <div className="space-y-3">
+                        <div className="space-y-2">
                           <Label 
                             htmlFor="message"
-                            className={`text-sm transition-colors duration-300 ${
-                              focusedField === 'message' ? 'text-foreground' : 'text-muted-foreground'
-                            }`}
+                            className="text-xs uppercase tracking-wider text-background/50"
                           >
                             Message
                           </Label>
                           <Textarea
                             id="message"
-                            placeholder="Votre message..."
+                            placeholder="Comment pouvons-nous vous aider ?"
                             rows={5}
                             value={formState.message}
                             onChange={(e) =>
@@ -283,21 +302,27 @@ export default function ContactPage() {
                             onFocus={() => setFocusedField('message')}
                             onBlur={() => setFocusedField(null)}
                             required
-                            className="px-5 py-4 rounded-xl border-border/50 focus:border-foreground transition-all duration-300 resize-none"
+                            className="px-5 py-4 rounded-xl bg-white/5 border-white/10 text-background placeholder:text-background/30 focus:border-white/30 focus:bg-white/10 transition-all duration-300 resize-none"
                           />
                         </div>
                         
-                        <MagneticWrapper className="pt-4">
-                          <Button type="submit" className="w-full h-14 rounded-xl text-base" size="lg">
-                            <Send className="h-4 w-4 mr-3" />
-                            Envoyer le message
-                            <ArrowRight className="h-4 w-4 ml-3" />
-                          </Button>
-                        </MagneticWrapper>
+                        <div className="pt-2">
+                          <MagneticWrapper>
+                            <Button 
+                              type="submit" 
+                              className="w-full h-14 rounded-xl text-base bg-background text-foreground hover:bg-background/90 transition-all duration-300" 
+                              size="lg"
+                            >
+                              <Send className="h-4 w-4 mr-3" />
+                              Envoyer le message
+                              <ArrowRight className="h-4 w-4 ml-3 transition-transform group-hover:translate-x-1" />
+                            </Button>
+                          </MagneticWrapper>
+                        </div>
                       </form>
                     )}
-                  </CardContent>
-                </Card>
+                  </div>
+                </div>
               </FadeUp>
             </div>
           </div>

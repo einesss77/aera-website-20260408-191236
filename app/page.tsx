@@ -158,32 +158,56 @@ export default function HomePage() {
       </section>
 
       {/* Features Section */}
-      <section className="py-32 md:py-40 bg-muted/30">
-        <div className="container mx-auto px-6 md:px-8">
+      <section className="py-32 md:py-40 relative overflow-hidden">
+        {/* Background gradient */}
+        <div className="absolute inset-0 bg-gradient-to-br from-foreground via-foreground to-foreground/95" />
+        
+        {/* Subtle pattern overlay */}
+        <div className="absolute inset-0 opacity-[0.03]" style={{
+          backgroundImage: `radial-gradient(circle at 1px 1px, white 1px, transparent 0)`,
+          backgroundSize: '40px 40px'
+        }} />
+        
+        <div className="container mx-auto px-6 md:px-8 relative z-10">
           <FadeUp>
             <div className="text-center mb-20">
-              <span className="inline-block text-xs font-medium tracking-widest uppercase text-muted-foreground mb-6">
+              <span className="inline-block text-xs font-medium tracking-widest uppercase text-background/40 mb-6">
                 Nos avantages
               </span>
-              <h2 className="text-3xl md:text-4xl lg:text-5xl font-semibold tracking-tight">
+              <h2 className="text-3xl md:text-4xl lg:text-5xl font-semibold tracking-tight text-background">
                 Pourquoi choisir AERA
               </h2>
             </div>
           </FadeUp>
           
-          <div className="grid md:grid-cols-3 gap-8">
+          <div className="grid md:grid-cols-3 gap-6 lg:gap-8">
             {features.map((feature, index) => (
               <FadeUp key={feature.title} delay={index * 0.15}>
-                <HoverScale>
-                  <Card className="border-0 shadow-xl bg-background h-full">
-                    <CardContent className="p-10 text-center">
-                      <div className="inline-flex items-center justify-center w-16 h-16 rounded-2xl bg-foreground/5 mb-8 transition-transform duration-300 hover:rotate-6">
-                        <feature.icon className="h-7 w-7 text-foreground" />
+                <HoverScale scale={1.02}>
+                  <div className="group relative h-full">
+                    {/* Glow effect on hover */}
+                    <div className="absolute -inset-px rounded-3xl bg-gradient-to-b from-white/20 to-white/5 opacity-0 group-hover:opacity-100 transition-opacity duration-500 blur-sm" />
+                    
+                    <div className="relative h-full p-8 lg:p-10 rounded-3xl border border-white/10 bg-white/5 backdrop-blur-sm transition-all duration-500 group-hover:border-white/20 group-hover:bg-white/10">
+                      {/* Number indicator */}
+                      <div className="absolute top-8 right-8 text-6xl font-bold text-white/[0.03] select-none">
+                        0{index + 1}
                       </div>
-                      <h3 className="text-xl font-semibold mb-4">{feature.title}</h3>
-                      <p className="text-muted-foreground leading-relaxed">{feature.description}</p>
-                    </CardContent>
-                  </Card>
+                      
+                      {/* Icon with gradient border */}
+                      <div className="relative mb-8">
+                        <div className="w-16 h-16 rounded-2xl bg-gradient-to-br from-white/20 to-white/5 flex items-center justify-center transition-transform duration-500 group-hover:scale-110 group-hover:rotate-3">
+                          <feature.icon className="h-7 w-7 text-background" strokeWidth={1.5} />
+                        </div>
+                      </div>
+                      
+                      <h3 className="text-xl font-semibold mb-4 text-background">{feature.title}</h3>
+                      <p className="text-background/60 leading-relaxed">{feature.description}</p>
+                      
+                      {/* Bottom accent line */}
+                      <div className="absolute bottom-0 left-10 right-10 h-px bg-gradient-to-r from-transparent via-white/20 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-500" />
+                    </div>
+                  </div>
                 </HoverScale>
               </FadeUp>
             ))}
