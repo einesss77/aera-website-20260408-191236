@@ -76,7 +76,7 @@ export default function ContactPage() {
               <span className="inline-block text-xs font-medium tracking-widest uppercase text-muted-foreground mb-6">
                 Support
               </span>
-              <h1 className="text-4xl md:text-5xl lg:text-6xl font-semibold mb-8 tracking-tight">
+              <h1 className="text-4xl md:text-5xl lg:text-6xl font-heading font-semibold mb-8 tracking-tight">
                 FAQ & Contact
               </h1>
               <p className="text-lg md:text-xl text-muted-foreground leading-relaxed">
@@ -97,7 +97,7 @@ export default function ContactPage() {
                 <span className="inline-block text-xs font-medium tracking-widest uppercase text-muted-foreground mb-6">
                   Aide
                 </span>
-                <h2 className="text-3xl md:text-4xl font-semibold tracking-tight">
+                <h2 className="text-3xl md:text-4xl font-heading font-semibold tracking-tight">
                   Questions Frequentes
                 </h2>
               </div>
@@ -149,7 +149,7 @@ export default function ContactPage() {
                 <span className="inline-block text-xs font-medium tracking-widest uppercase text-background/40 mb-6">
                   Contact
                 </span>
-                <h2 className="text-3xl md:text-4xl font-semibold tracking-tight text-background">
+                <h2 className="text-3xl md:text-4xl font-heading font-semibold tracking-tight text-background">
                   Contactez-nous
                 </h2>
               </div>
@@ -163,7 +163,7 @@ export default function ContactPage() {
                     <p className="text-background/60 text-sm uppercase tracking-widest">
                       Parlons ensemble
                     </p>
-                    <h3 className="text-2xl md:text-3xl font-semibold text-background leading-tight">
+                    <h3 className="text-2xl md:text-3xl font-heading font-semibold text-background leading-tight">
                       Une question ? Un partenariat ? Ecrivez-nous.
                     </h3>
                   </div>

@@ -68,7 +68,7 @@ export default function ProduitsPage() {
               <span className="inline-block text-xs font-medium tracking-widest uppercase text-muted-foreground mb-6">
                 Notre collection
               </span>
-              <h1 className="text-4xl md:text-5xl lg:text-6xl font-semibold mb-8 tracking-tight">
+              <h1 className="text-4xl md:text-5xl lg:text-6xl font-heading font-semibold mb-8 tracking-tight">
                 Nos Produits
               </h1>
               <p className="text-lg md:text-xl text-muted-foreground leading-relaxed">
@@ -168,7 +168,7 @@ export default function ProduitsPage() {
                 <span className="inline-block text-xs font-medium tracking-widest uppercase text-muted-foreground mb-6">
                   Specifications
                 </span>
-                <h2 className="text-3xl md:text-4xl lg:text-5xl font-semibold mb-8 tracking-tight">
+                <h2 className="text-3xl md:text-4xl lg:text-5xl font-heading font-semibold mb-8 tracking-tight">
                   Une Gamme Complete
                 </h2>
                 <p className="text-lg text-muted-foreground mb-10 leading-relaxed">
@@ -207,7 +207,7 @@ export default function ProduitsPage() {
                   <span className="inline-block text-xs font-medium tracking-widest uppercase text-muted-foreground mb-6">
                     Notre mission
                   </span>
-                  <h2 className="text-3xl md:text-4xl lg:text-5xl font-semibold mb-8 tracking-tight">
+                  <h2 className="text-3xl md:text-4xl lg:text-5xl font-heading font-semibold mb-8 tracking-tight">
                     Notre Vision
                   </h2>
                   <p className="text-muted-foreground leading-relaxed mb-6">

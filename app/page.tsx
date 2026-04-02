@@ -76,7 +76,7 @@ export default function HomePage() {
                 </span>
               </FadeUp>
               
-              <h1 className="text-4xl md:text-5xl lg:text-6xl xl:text-7xl font-semibold tracking-tight text-balance mb-8 leading-[1.1]">
+              <h1 className="text-4xl md:text-5xl lg:text-6xl xl:text-7xl font-heading font-semibold tracking-tight text-balance mb-8 leading-[1.1]">
                 <TextReveal text="Le Premier Producteur de Nicotine Pouches en" delay={0.2} />
                 <FadeUp delay={0.8}>
                   <span className="block mt-2 bg-gradient-to-r from-foreground via-foreground/80 to-foreground bg-clip-text">
@@ -142,7 +142,7 @@ export default function HomePage() {
               <span className="inline-block text-xs font-medium tracking-widest uppercase text-muted-foreground mb-6">
                 A propos
               </span>
-              <h2 className="text-3xl md:text-4xl lg:text-5xl font-semibold mb-8 tracking-tight">
+              <h2 className="text-3xl md:text-4xl lg:text-5xl font-heading font-semibold mb-8 tracking-tight">
                 Qui sommes-nous
               </h2>
               <p className="text-lg md:text-xl text-muted-foreground leading-relaxed">
@@ -160,52 +160,70 @@ export default function HomePage() {
       {/* Features Section */}
       <section className="py-32 md:py-40 relative overflow-hidden">
         {/* Background gradient */}
-        <div className="absolute inset-0 bg-gradient-to-br from-foreground via-foreground to-foreground/95" />
+        <div className="absolute inset-0 bg-foreground" />
         
         {/* Subtle pattern overlay */}
-        <div className="absolute inset-0 opacity-[0.03]" style={{
+        <div className="absolute inset-0 opacity-[0.02]" style={{
           backgroundImage: `radial-gradient(circle at 1px 1px, white 1px, transparent 0)`,
-          backgroundSize: '40px 40px'
+          backgroundSize: '32px 32px'
         }} />
         
         <div className="container mx-auto px-6 md:px-8 relative z-10">
-          <FadeUp>
-            <div className="text-center mb-20">
-              <span className="inline-block text-xs font-medium tracking-widest uppercase text-background/40 mb-6">
-                Nos avantages
-              </span>
-              <h2 className="text-3xl md:text-4xl lg:text-5xl font-semibold tracking-tight text-background">
-                Pourquoi choisir AERA
-              </h2>
-            </div>
-          </FadeUp>
+          {/* Creative Header Section */}
+          <div className="grid lg:grid-cols-2 gap-12 lg:gap-20 mb-20">
+            <FadeUp>
+              <div>
+                <span className="inline-block text-xs font-medium tracking-widest uppercase text-background/40 mb-6">
+                  Nos avantages
+                </span>
+                <h2 className="text-4xl md:text-5xl lg:text-6xl font-heading font-semibold tracking-tight text-background leading-[1.1]">
+                  Pourquoi
+                  <span className="block text-background/20">choisir</span>
+                  <span className="block">AERA<span className="text-background/30">?</span></span>
+                </h2>
+              </div>
+            </FadeUp>
+            
+            <FadeUp delay={0.2}>
+              <div className="flex items-end lg:pb-4">
+                <p className="text-lg md:text-xl text-background/60 leading-relaxed max-w-md">
+                  Une experience unique qui allie innovation, qualite et respect de vos attentes. 
+                  Decouvrez ce qui fait notre difference.
+                </p>
+              </div>
+            </FadeUp>
+          </div>
           
-          <div className="grid md:grid-cols-3 gap-6 lg:gap-8">
+          {/* Feature Cards - Equal Heights */}
+          <div className="grid md:grid-cols-3 gap-6">
             {features.map((feature, index) => (
-              <FadeUp key={feature.title} delay={index * 0.15}>
+              <FadeUp key={feature.title} delay={index * 0.1}>
                 <HoverScale scale={1.02}>
                   <div className="group relative h-full">
                     {/* Glow effect on hover */}
-                    <div className="absolute -inset-px rounded-3xl bg-gradient-to-b from-white/20 to-white/5 opacity-0 group-hover:opacity-100 transition-opacity duration-500 blur-sm" />
+                    <div className="absolute -inset-0.5 rounded-2xl bg-gradient-to-b from-white/20 to-white/0 opacity-0 group-hover:opacity-100 transition-opacity duration-500" />
                     
-                    <div className="relative h-full p-8 lg:p-10 rounded-3xl border border-white/10 bg-white/5 backdrop-blur-sm transition-all duration-500 group-hover:border-white/20 group-hover:bg-white/10">
+                    <div className="relative flex flex-col h-full min-h-[280px] p-8 rounded-2xl border border-white/10 bg-white/[0.03] backdrop-blur-sm transition-all duration-500 group-hover:border-white/20 group-hover:bg-white/[0.06]">
                       {/* Number indicator */}
-                      <div className="absolute top-8 right-8 text-6xl font-bold text-white/[0.03] select-none">
+                      <div className="absolute top-6 right-6 text-7xl font-heading font-bold text-white/[0.04] select-none leading-none">
                         0{index + 1}
                       </div>
                       
-                      {/* Icon with gradient border */}
-                      <div className="relative mb-8">
-                        <div className="w-16 h-16 rounded-2xl bg-gradient-to-br from-white/20 to-white/5 flex items-center justify-center transition-transform duration-500 group-hover:scale-110 group-hover:rotate-3">
-                          <feature.icon className="h-7 w-7 text-background" strokeWidth={1.5} />
+                      {/* Icon */}
+                      <div className="relative mb-6">
+                        <div className="w-14 h-14 rounded-xl bg-white/10 flex items-center justify-center transition-all duration-500 group-hover:scale-110 group-hover:bg-white/15">
+                          <feature.icon className="h-6 w-6 text-background" strokeWidth={1.5} />
                         </div>
                       </div>
                       
-                      <h3 className="text-xl font-semibold mb-4 text-background">{feature.title}</h3>
-                      <p className="text-background/60 leading-relaxed">{feature.description}</p>
+                      {/* Content - flex-grow to push content and maintain equal heights */}
+                      <div className="flex flex-col flex-grow">
+                        <h3 className="text-lg font-heading font-semibold mb-3 text-background">{feature.title}</h3>
+                        <p className="text-background/50 text-sm leading-relaxed">{feature.description}</p>
+                      </div>
                       
-                      {/* Bottom accent line */}
-                      <div className="absolute bottom-0 left-10 right-10 h-px bg-gradient-to-r from-transparent via-white/20 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-500" />
+                      {/* Bottom accent */}
+                      <div className="absolute bottom-0 left-8 right-8 h-px bg-gradient-to-r from-transparent via-white/10 to-transparent" />
                     </div>
                   </div>
                 </HoverScale>
@@ -223,7 +241,7 @@ export default function HomePage() {
               <span className="inline-block text-xs font-medium tracking-widest uppercase text-muted-foreground mb-6">
                 Collection
               </span>
-              <h2 className="text-3xl md:text-4xl lg:text-5xl font-semibold mb-6 tracking-tight">
+              <h2 className="text-3xl md:text-4xl lg:text-5xl font-heading font-semibold mb-6 tracking-tight">
                 Nos Produits
               </h2>
               <p className="text-lg text-muted-foreground max-w-2xl mx-auto">
@@ -303,7 +321,7 @@ export default function HomePage() {
                 <span className="inline-block text-xs font-medium tracking-widest uppercase text-background/50 mb-6">
                   Edition Premium
                 </span>
-                <h2 className="text-3xl md:text-4xl lg:text-5xl font-semibold mb-8 tracking-tight">
+                <h2 className="text-3xl md:text-4xl lg:text-5xl font-heading font-semibold mb-8 tracking-tight">
                   L&apos;Excellence a l&apos;Etat Pur
                 </h2>
                 <p className="text-lg text-background/70 leading-relaxed mb-10">
