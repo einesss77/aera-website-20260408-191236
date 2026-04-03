@@ -75,8 +75,8 @@
 }
 
 @theme inline {
-  --font-heading: 'Space Grotesk', 'Space Grotesk Fallback', system-ui, sans-serif;
-  --font-body: 'DM Sans', 'DM Sans Fallback', system-ui, sans-serif;
+  --font-heading: 'Cormorant Garamond', 'Georgia', serif;
+  --font-body: 'Inter', 'Inter Fallback', system-ui, sans-serif;
   --font-sans: var(--font-body);
   --font-mono: 'Geist Mono', 'Geist Mono Fallback';
   --color-background: var(--background);

@@ -1,6 +1,7 @@
 "use client"
 
 import Link from "next/link"
+import Image from "next/image"
 import { useState, useEffect } from "react"
 import { Menu, X } from "lucide-react"
 import { Button } from "@/components/ui/button"
@@ -44,11 +45,15 @@ export function Header() {
         >
           <div className="px-6 md:px-8">
             <div className="flex items-center justify-between h-16 md:h-18">
-              <Link href="/" className="relative group">
-                <span className="text-xl md:text-2xl font-heading font-semibold tracking-tight transition-transform duration-200 hover:scale-[1.02] inline-block">
-                  AERA
-                </span>
-                <span className="absolute -bottom-0.5 left-0 w-0 h-0.5 bg-foreground group-hover:w-full transition-all duration-300" />
+              <Link href="/" className="relative group transition-transform duration-200 hover:scale-[1.02]">
+                <Image
+                  src="/images/logo.jpeg"
+                  alt="AERA"
+                  width={80}
+                  height={32}
+                  className="h-7 md:h-8 w-auto object-contain"
+                  priority
+                />
               </Link>
 
               {/* Desktop Navigation */}

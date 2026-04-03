@@ -1,25 +1,25 @@
 import type { Metadata } from 'next'
-import { Space_Grotesk, DM_Sans } from 'next/font/google'
+import { Cormorant_Garamond, Inter } from 'next/font/google'
 import { Analytics } from '@vercel/analytics/next'
 import './globals.css'
 import { Header } from '@/components/header'
 import { Footer } from '@/components/footer'
 
-const spaceGrotesk = Space_Grotesk({ 
+const cormorant = Cormorant_Garamond({ 
   subsets: ["latin"], 
   variable: "--font-heading",
   weight: ["400", "500", "600", "700"]
 });
 
-const dmSans = DM_Sans({ 
+const inter = Inter({ 
   subsets: ["latin"], 
   variable: "--font-body",
   weight: ["400", "500", "600"]
 });
 
 export const metadata: Metadata = {
-  title: 'ÆERA | Premier Producteur de Nicotine Pouches en Algerie',
-  description: 'ÆERA - Le premier producteur de nicotine pouches en Algerie. Production locale, standards internationaux, sans fumee ni tabac.',
+  title: 'AERA | Premier Producteur de Nicotine Pouches en Algerie',
+  description: 'AERA - Le premier producteur de nicotine pouches en Algerie. Production locale, standards internationaux, sans fumee ni tabac.',
   keywords: ['nicotine pouches', 'AERA', 'Algerie', 'sans tabac', 'sans fumee'],
 }
 
@@ -30,7 +30,7 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="fr">
-      <body className={`${spaceGrotesk.variable} ${dmSans.variable} font-body antialiased`}>
+      <body className={`${cormorant.variable} ${inter.variable} font-body antialiased`}>
         <Header />
         <main>{children}</main>
         <Footer />

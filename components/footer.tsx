@@ -1,6 +1,7 @@
 "use client"
 
 import Link from "next/link"
+import Image from "next/image"
 import { Mail, MapPin } from "lucide-react"
 import { FadeUp } from "@/components/animations"
 
@@ -13,9 +14,15 @@ export function Footer() {
         <div className="grid grid-cols-1 md:grid-cols-3 gap-12 md:gap-16">
           {/* Brand */}
           <FadeUp>
-            <h3 className="text-2xl font-semibold mb-5 transition-transform duration-200 hover:scale-[1.02] inline-block cursor-default">
-              AERA
-            </h3>
+            <div className="mb-5">
+              <Image
+                src="/images/logo.jpeg"
+                alt="AERA"
+                width={100}
+                height={40}
+                className="h-10 w-auto object-contain brightness-0 invert transition-transform duration-200 hover:scale-[1.02]"
+              />
+            </div>
             <p className="text-background/60 text-sm leading-relaxed max-w-xs">
               Le premier producteur de nicotine pouches en Algerie. 
               Production locale avec des standards internationaux.
