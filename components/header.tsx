@@ -35,29 +35,35 @@ export function Header() {
       }}
     >
       {/* Glassy container with margin */}
-      <div className="container mx-auto px-4 md:px-6 pt-4">
+      <div 
+        className={`mx-auto px-4 md:px-6 pt-4 transition-all duration-700 ease-[cubic-bezier(0.25,0.4,0.25,1)] ${
+          isScrolled
+            ? "max-w-3xl"
+            : "max-w-7xl"
+        }`}
+      >
         <div 
           className={`rounded-2xl transition-all duration-500 ${
             isScrolled
-              ? "bg-white/70 backdrop-blur-xl shadow-lg shadow-black/[0.03] border border-white/20"
+              ? "bg-white/80 backdrop-blur-xl shadow-lg shadow-black/[0.05] border border-white/30"
               : "bg-white/50 backdrop-blur-md border border-white/15"
           }`}
         >
-          <div className="px-6 md:px-8">
-            <div className="flex items-center justify-between h-20 md:h-22">
+          <div className={`transition-all duration-500 ${isScrolled ? "px-4 md:px-6" : "px-6 md:px-8"}`}>
+            <div className={`flex items-center justify-between transition-all duration-500 ${isScrolled ? "h-14 md:h-16" : "h-20 md:h-22"}`}>
               <Link href="/" className="relative group transition-transform duration-200 hover:scale-[1.02]">
                 <Image
                   src="/images/logo.png"
                   alt="AERA"
                   width={180}
                   height={72}
-                  className="h-14 md:h-16 w-auto object-contain"
+                  className={`w-auto object-contain transition-all duration-500 ${isScrolled ? "h-10 md:h-11" : "h-14 md:h-16"}`}
                   priority
                 />
               </Link>
 
               {/* Desktop Navigation */}
-              <nav className="hidden md:flex items-center gap-12">
+              <nav className={`hidden md:flex items-center transition-all duration-500 ${isScrolled ? "gap-8" : "gap-12"}`}>
                 {navLinks.map((link, index) => (
                   <div
                     key={link.href}
