@@ -58,103 +58,145 @@ export default function HomePage() {
   return (
     <div className="min-h-screen overflow-hidden">
       {/* Hero Section */}
-      <section className="relative min-h-screen flex flex-col">
-        {/* Split layout */}
-        <div className="grid lg:grid-cols-2 flex-1">
-          {/* Left side - Content on dark background */}
-          <div className="relative flex items-center bg-[#1a1a1a] order-2 lg:order-1">
-            <div className="container mx-auto px-6 md:px-12 lg:px-16 py-32 lg:py-24">
-              <div className="max-w-xl">
-                <FadeUp>
-                  <span className="inline-flex items-center gap-2 px-4 py-1.5 text-xs font-medium tracking-widest uppercase bg-white/10 text-white/80 rounded-full mb-8">
-                    <span className="w-1.5 h-1.5 rounded-full bg-emerald-400 animate-pulse" />
-                    Premier en Algerie
-                  </span>
-                </FadeUp>
-                
-                <div className="mb-8">
-                  <FadeUp delay={0.1}>
-                    <p className="text-sm text-white/50 uppercase tracking-[0.2em] mb-4">
-                      Le premier producteur de
-                    </p>
-                  </FadeUp>
-                  <h1 className="font-heading font-semibold tracking-tight leading-[0.95]">
-                    <FadeUp delay={0.2}>
-                      <span className="block text-5xl md:text-6xl lg:text-7xl text-white">
-                        Nicotine
-                      </span>
-                    </FadeUp>
-                    <FadeUp delay={0.3}>
-                      <span className="block text-5xl md:text-6xl lg:text-7xl text-white/30">
-                        Pouches
-                      </span>
-                    </FadeUp>
-                    <FadeUp delay={0.4}>
-                      <span className="block text-lg md:text-xl font-normal text-white/50 mt-4 tracking-normal">
-                        en <span className="text-white font-medium">Algerie</span>
-                      </span>
-                    </FadeUp>
-                  </h1>
-                </div>
-                
-                <FadeUp delay={0.5}>
-                  <p className="text-base md:text-lg text-white/60 mb-10 leading-relaxed">
-                    Decouvrez AERA, une nouvelle ere de satisfaction. Production locale, qualite internationale.
+      <section className="relative min-h-screen flex items-center pt-28 pb-16 overflow-hidden bg-gradient-to-br from-background via-background to-muted/30">
+        {/* Subtle background elements */}
+        <div className="absolute top-1/4 -left-32 w-96 h-96 bg-emerald-500/5 rounded-full blur-3xl" />
+        <div className="absolute bottom-1/4 -right-32 w-96 h-96 bg-amber-500/5 rounded-full blur-3xl" />
+        
+        <div className="container mx-auto px-6 md:px-8">
+          <div className="grid lg:grid-cols-2 gap-12 lg:gap-8 items-center">
+            {/* Left side - Content */}
+            <div className="text-center lg:text-left order-2 lg:order-1">
+              <FadeUp>
+                <span className="inline-flex items-center gap-2 px-4 py-1.5 text-xs font-medium tracking-widest uppercase bg-foreground/5 text-foreground/70 rounded-full mb-8 border border-foreground/10">
+                  <span className="w-1.5 h-1.5 rounded-full bg-emerald-500 animate-pulse" />
+                  Premier en Algerie
+                </span>
+              </FadeUp>
+              
+              <div className="mb-8">
+                <FadeUp delay={0.1}>
+                  <p className="text-sm text-muted-foreground uppercase tracking-[0.2em] mb-4">
+                    Le premier producteur de
                   </p>
                 </FadeUp>
-                
-                <FadeUp delay={0.6}>
-                  <div className="flex flex-col sm:flex-row gap-4">
-                    <MagneticWrapper>
-                      <Button asChild size="lg" className="text-base h-14 px-8 rounded-full bg-white text-[#1a1a1a] hover:bg-white/90">
-                        <Link href="/produits">
-                          Voir nos produits
-                          <ArrowRight className="ml-2 h-4 w-4" />
-                        </Link>
-                      </Button>
-                    </MagneticWrapper>
-                    <MagneticWrapper>
-                      <Button asChild variant="outline" size="lg" className="text-base h-14 px-8 rounded-full border-white/20 text-white hover:bg-white/10 hover:text-white">
-                        <Link href="/contact">Nous contacter</Link>
-                      </Button>
-                    </MagneticWrapper>
-                  </div>
-                </FadeUp>
-                
-                {/* Info badges */}
-                <FadeUp delay={0.7}>
-                  <div className="flex flex-wrap gap-3 mt-12">
-                    <div className="flex items-center gap-2 text-white/40 text-sm">
-                      <Leaf className="w-4 h-4" />
-                      <span>Sans Tabac</span>
-                    </div>
-                    <span className="text-white/20">|</span>
-                    <div className="flex items-center gap-2 text-white/40 text-sm">
-                      <Award className="w-4 h-4" />
-                      <span>3 Saveurs</span>
-                    </div>
-                  </div>
-                </FadeUp>
+                <h1 className="font-heading font-semibold tracking-tight leading-[0.95]">
+                  <FadeUp delay={0.2}>
+                    <span className="block text-5xl md:text-6xl lg:text-7xl xl:text-8xl">
+                      Nicotine
+                    </span>
+                  </FadeUp>
+                  <FadeUp delay={0.3}>
+                    <span className="block text-5xl md:text-6xl lg:text-7xl xl:text-8xl text-muted-foreground/30">
+                      Pouches
+                    </span>
+                  </FadeUp>
+                  <FadeUp delay={0.4}>
+                    <span className="block text-lg md:text-xl lg:text-2xl font-normal text-muted-foreground mt-4 tracking-normal">
+                      en <span className="text-foreground font-medium">Algerie</span>
+                    </span>
+                  </FadeUp>
+                </h1>
               </div>
+              
+              <FadeUp delay={0.5}>
+                <p className="text-base md:text-lg text-muted-foreground mb-10 max-w-md mx-auto lg:mx-0 leading-relaxed">
+                  Decouvrez AERA, une nouvelle ere de satisfaction. Production locale, qualite internationale.
+                </p>
+              </FadeUp>
+              
+              <FadeUp delay={0.6}>
+                <div className="flex flex-col sm:flex-row gap-4 justify-center lg:justify-start">
+                  <MagneticWrapper>
+                    <Button asChild size="lg" className="text-base h-14 px-8 rounded-full">
+                      <Link href="/produits">
+                        Voir nos produits
+                        <ArrowRight className="ml-2 h-4 w-4" />
+                      </Link>
+                    </Button>
+                  </MagneticWrapper>
+                  <MagneticWrapper>
+                    <Button asChild variant="outline" size="lg" className="text-base h-14 px-8 rounded-full">
+                      <Link href="/contact">Nous contacter</Link>
+                    </Button>
+                  </MagneticWrapper>
+                </div>
+              </FadeUp>
+              
+              {/* Info badges */}
+              <FadeUp delay={0.7}>
+                <div className="flex flex-wrap gap-6 mt-12 justify-center lg:justify-start">
+                  <div className="flex items-center gap-2 text-muted-foreground text-sm">
+                    <div className="w-8 h-8 rounded-full bg-emerald-500/10 flex items-center justify-center">
+                      <Leaf className="w-4 h-4 text-emerald-600" />
+                    </div>
+                    <span>Sans Tabac</span>
+                  </div>
+                  <div className="flex items-center gap-2 text-muted-foreground text-sm">
+                    <div className="w-8 h-8 rounded-full bg-amber-500/10 flex items-center justify-center">
+                      <Award className="w-4 h-4 text-amber-600" />
+                    </div>
+                    <span>3 Saveurs</span>
+                  </div>
+                </div>
+              </FadeUp>
             </div>
-          </div>
-          
-          {/* Right side - Product image */}
-          <div className="relative h-[50vh] lg:h-auto order-1 lg:order-2">
-            <Image
-              src="https://hebbkx1anhila5yf.public.blob.vercel-storage.com/WhatsApp%20Image%202026-04-02%20at%2016.00.33%20%281%29-pRv6uk6SYwnhA5v7LDUlPxk1F2BElw.jpeg"
-              alt="AERA nicotine pouches - Berry, Mint, et Mango"
-              fill
-              className="object-cover"
-              priority
-            />
-            {/* Subtle gradient overlay at the edge */}
-            <div className="absolute inset-y-0 left-0 w-32 bg-gradient-to-r from-[#1a1a1a] to-transparent hidden lg:block" />
+            
+            {/* Right side - Floating Product Showcase */}
+            <FadeUp delay={0.3} className="relative order-1 lg:order-2">
+              <div className="relative flex items-center justify-center">
+                {/* Decorative rings */}
+                <div className="absolute w-[90%] aspect-square rounded-full border border-foreground/5 animate-[spin_30s_linear_infinite]" />
+                <div className="absolute w-[75%] aspect-square rounded-full border border-foreground/5 animate-[spin_25s_linear_infinite_reverse]" />
+                <div className="absolute w-[60%] aspect-square rounded-full border border-dashed border-foreground/10" />
+                
+                {/* Main product image - floating effect */}
+                <div className="relative z-10 w-full max-w-lg animate-[float_6s_ease-in-out_infinite]">
+                  <div className="relative">
+                    {/* Glow effect behind image */}
+                    <div className="absolute inset-0 bg-gradient-to-br from-emerald-500/20 via-transparent to-amber-500/20 rounded-full blur-3xl scale-75" />
+                    
+                    {/* Product image with soft mask */}
+                    <div className="relative rounded-[2rem] overflow-hidden">
+                      <Image
+                        src="https://hebbkx1anhila5yf.public.blob.vercel-storage.com/WhatsApp%20Image%202026-04-02%20at%2016.00.33%20%281%29-pRv6uk6SYwnhA5v7LDUlPxk1F2BElw.jpeg"
+                        alt="AERA nicotine pouches - Berry, Mint, et Mango"
+                        width={600}
+                        height={500}
+                        className="w-full h-auto"
+                        priority
+                      />
+                    </div>
+                    
+                    {/* Floating accent badges */}
+                    <div className="absolute -top-4 -right-4 bg-background shadow-xl rounded-2xl px-4 py-3 border border-border/50 animate-[float_4s_ease-in-out_infinite_0.5s]">
+                      <p className="text-xs text-muted-foreground">Fresh Mint</p>
+                      <p className="text-sm font-semibold">6mg</p>
+                    </div>
+                    
+                    <div className="absolute -bottom-2 -left-4 bg-background shadow-xl rounded-2xl px-4 py-3 border border-border/50 animate-[float_4s_ease-in-out_infinite_1s]">
+                      <p className="text-xs text-muted-foreground">Mango</p>
+                      <p className="text-sm font-semibold">30mg</p>
+                    </div>
+                    
+                    <div className="absolute top-1/2 -right-8 bg-foreground text-background shadow-xl rounded-2xl px-4 py-3 animate-[float_4s_ease-in-out_infinite_1.5s]">
+                      <p className="text-xs text-background/60">Berry</p>
+                      <p className="text-sm font-semibold">3mg</p>
+                    </div>
+                  </div>
+                </div>
+                
+                {/* Floating dots decoration */}
+                <div className="absolute top-10 left-10 w-3 h-3 bg-emerald-500 rounded-full animate-pulse" />
+                <div className="absolute bottom-20 right-10 w-2 h-2 bg-amber-500 rounded-full animate-pulse" />
+                <div className="absolute top-1/2 left-0 w-2 h-2 bg-rose-500 rounded-full animate-pulse" />
+              </div>
+            </FadeUp>
           </div>
         </div>
         
         {/* Scroll indicator */}
-        <div className="absolute bottom-8 left-1/2 -translate-x-1/2 z-20">
+        <div className="absolute bottom-8 left-1/2 -translate-x-1/2">
           <ScrollIndicator />
         </div>
       </section>

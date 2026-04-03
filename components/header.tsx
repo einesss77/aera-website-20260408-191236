@@ -49,9 +49,9 @@ export function Header() {
                 <Image
                   src="/images/logo.png"
                   alt="AERA"
-                  width={100}
-                  height={40}
-                  className="h-8 md:h-9 w-auto object-contain"
+                  width={140}
+                  height={56}
+                  className="h-10 md:h-12 w-auto object-contain"
                   priority
                 />
               </Link>
