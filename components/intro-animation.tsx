@@ -155,7 +155,7 @@ export function IntroAnimation({ onComplete }: { onComplete: () => void }) {
 
         {/* Tagline - positioned below the circle */}
         <p
-          className={`absolute top-[60%] left-1/2 -translate-x-1/2 text-white/40 text-sm tracking-[0.3em] uppercase transition-all duration-500 ${
+          className={`absolute top-1/2 left-1/2 -translate-x-1/2 mt-52 md:mt-56 text-white/40 text-sm tracking-[0.3em] uppercase transition-all duration-500 ${
             phase === "ring" || phase === "pulse" ? "opacity-100 translate-y-0" : "opacity-0 translate-y-4"
           }`}
           style={{ transitionDelay: "800ms" }}
