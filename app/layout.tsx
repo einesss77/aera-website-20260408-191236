@@ -4,6 +4,7 @@ import { Analytics } from '@vercel/analytics/next'
 import './globals.css'
 import { Header } from '@/components/header'
 import { Footer } from '@/components/footer'
+import { IntroWrapper } from '@/components/intro-animation'
 
 const cormorant = Cormorant_Garamond({ 
   subsets: ["latin"], 
@@ -31,9 +32,11 @@ export default function RootLayout({
   return (
     <html lang="fr" suppressHydrationWarning data-scroll-behavior="smooth">
       <body className={`${cormorant.variable} ${inter.variable} font-body antialiased`}>
-        <Header />
-        <main>{children}</main>
-        <Footer />
+        <IntroWrapper>
+          <Header />
+          <main>{children}</main>
+          <Footer />
+        </IntroWrapper>
         <Analytics />
       </body>
     </html>
