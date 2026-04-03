@@ -15,7 +15,7 @@ export function IntroAnimation({ onComplete }: { onComplete: () => void }) {
       setTimeout(() => {
         setPhase("done")
         onComplete()
-      }, 3500),                                       // Complete
+      }, 3800),                                       // Complete (extended for smoother split)
     ]
 
     return () => timers.forEach(clearTimeout)
@@ -27,7 +27,7 @@ export function IntroAnimation({ onComplete }: { onComplete: () => void }) {
     <div className="fixed inset-0 z-[100] pointer-events-none">
       {/* Top half */}
       <div
-        className={`absolute inset-x-0 top-0 h-1/2 bg-[#0a0a0a] transition-transform duration-1000 ease-[cubic-bezier(0.76,0,0.24,1)] ${
+        className={`absolute inset-x-0 top-0 h-1/2 bg-[#0a0a0a] transition-transform duration-[1200ms] ease-[cubic-bezier(0.65,0,0.35,1)] ${
           phase === "split" ? "-translate-y-full" : "translate-y-0"
         }`}
         style={{ transformOrigin: "top" }}
@@ -35,7 +35,7 @@ export function IntroAnimation({ onComplete }: { onComplete: () => void }) {
       
       {/* Bottom half */}
       <div
-        className={`absolute inset-x-0 bottom-0 h-1/2 bg-[#0a0a0a] transition-transform duration-1000 ease-[cubic-bezier(0.76,0,0.24,1)] ${
+        className={`absolute inset-x-0 bottom-0 h-1/2 bg-[#0a0a0a] transition-transform duration-[1200ms] ease-[cubic-bezier(0.65,0,0.35,1)] ${
           phase === "split" ? "translate-y-full" : "translate-y-0"
         }`}
         style={{ transformOrigin: "bottom" }}
@@ -153,9 +153,9 @@ export function IntroAnimation({ onComplete }: { onComplete: () => void }) {
           </div>
         </div>
 
-        {/* Tagline */}
+        {/* Tagline - positioned below the circle */}
         <p
-          className={`absolute bottom-1/3 text-white/40 text-sm tracking-[0.3em] uppercase transition-all duration-500 ${
+          className={`absolute top-[60%] left-1/2 -translate-x-1/2 text-white/40 text-sm tracking-[0.3em] uppercase transition-all duration-500 ${
             phase === "ring" || phase === "pulse" ? "opacity-100 translate-y-0" : "opacity-0 translate-y-4"
           }`}
           style={{ transitionDelay: "800ms" }}
@@ -179,26 +179,16 @@ export function IntroWrapper({ children }: { children: React.ReactNode }) {
   const [showIntro, setShowIntro] = useState(true)
   const [contentVisible, setContentVisible] = useState(false)
 
-  useEffect(() => {
-    // Check if intro has been shown in this session
-    const hasSeenIntro = sessionStorage.getItem("aera-intro-seen")
-    if (hasSeenIntro) {
-      setShowIntro(false)
-      setContentVisible(true)
-    }
-  }, [])
-
   const handleIntroComplete = () => {
     setShowIntro(false)
     setContentVisible(true)
-    sessionStorage.setItem("aera-intro-seen", "true")
   }
 
   return (
     <>
       {showIntro && <IntroAnimation onComplete={handleIntroComplete} />}
       <div
-        className={`transition-opacity duration-500 ${
+        className={`transition-opacity duration-700 ease-out ${
           contentVisible ? "opacity-100" : "opacity-0"
         }`}
       >
