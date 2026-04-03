@@ -230,7 +230,7 @@ export default function ProduitsPage() {
                       alt="AERA Mint et Berry"
                       width={500}
                       height={600}
-                      className="rounded-3xl shadow-2xl"
+                      className="rounded-3xl shadow-2xl w-full h-auto"
                     />
                   </ParallaxImage>
                   
