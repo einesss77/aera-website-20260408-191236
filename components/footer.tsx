@@ -16,10 +16,10 @@ export function Footer() {
           <FadeUp>
             <div className="mb-5">
               <Image
-                src="/images/logo.jpeg"
+                src="/images/logo.png"
                 alt="AERA"
-                width={100}
-                height={40}
+                width={120}
+                height={48}
                 className="h-10 w-auto object-contain brightness-0 invert transition-transform duration-200 hover:scale-[1.02]"
               />
             </div>

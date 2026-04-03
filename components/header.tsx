@@ -39,19 +39,19 @@ export function Header() {
         <div 
           className={`rounded-2xl transition-all duration-500 ${
             isScrolled
-              ? "bg-white/70 backdrop-blur-xl border border-white/20 shadow-lg shadow-black/[0.03]"
-              : "bg-white/40 backdrop-blur-md border border-white/10"
+              ? "bg-background/95 backdrop-blur-xl shadow-lg shadow-black/[0.08] border border-border/50"
+              : "bg-background/80 backdrop-blur-md border border-border/30"
           }`}
         >
           <div className="px-6 md:px-8">
             <div className="flex items-center justify-between h-16 md:h-18">
               <Link href="/" className="relative group transition-transform duration-200 hover:scale-[1.02]">
                 <Image
-                  src="/images/logo.jpeg"
+                  src="/images/logo.png"
                   alt="AERA"
-                  width={80}
-                  height={32}
-                  className="h-7 md:h-8 w-auto object-contain"
+                  width={100}
+                  height={40}
+                  className="h-8 md:h-9 w-auto object-contain"
                   priority
                 />
               </Link>
