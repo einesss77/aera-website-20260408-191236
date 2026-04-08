@@ -24,27 +24,27 @@ const faqs = [
   {
     question: "Qui sommes-nous ?",
     answer:
-      "AERA est le premier producteur de nicotine pouches en Algerie. Nous combinons expertise internationale et savoir-faire local pour creer des produits de haute qualite qui respectent les standards les plus exigeants de l'industrie.",
+      "AERA est le premier producteur de nicotine pouches en Algérie. Nous combinons expertise internationale et savoir-faire local pour créer des produits de haute qualité qui respectent les standards les plus exigeants de l'industrie.",
   },
   {
     question: "Combien de temps dure l'effet d'un pouch ?",
     answer:
-      "L'effet d'un pouch AERA dure environ 45 minutes. Cette duree peut varier legerement selon les individus et le dosage choisi.",
+      "L'effet d'un pouch AERA dure environ 45 minutes. Cette durée peut varier légèrement selon les individus et le dosage choisi.",
   },
   {
     question: "Comment utiliser les nicotine pouches ?",
     answer:
-      "Placez simplement le pouch sous votre levre superieure. Il liberera progressivement la nicotine sans avoir besoin de macher ou de cracher. Retirez-le apres environ 45 minutes ou lorsque vous le souhaitez.",
+      "Placez simplement le pouch sous votre lèvre supérieure. Il libérera progressivement la nicotine, sans avoir besoin de mâcher ni de cracher. Retirez-le après environ 45 minutes ou lorsque vous le souhaitez.",
   },
   {
     question: "Quels dosages de nicotine proposez-vous ?",
     answer:
-      "Nous proposons une gamme complete allant de 3mg (leger) a 50mg (tres fort) pour s'adapter a tous les profils d'utilisateurs. Nos trois produits phares sont Berry (3mg), Fresh Mint (6mg) et Mango (30mg).",
+      "Nous proposons une gamme complète allant de 3 mg (léger) à 50 mg (très fort) pour s'adapter à tous les profils d'utilisateurs. Nos trois produits phares sont Berry (3 mg), Fresh Mint (6 mg) et Mango (30 mg).",
   },
   {
-    question: "Combien de pouches contient une boite ?",
+    question: "Combien de pouches contient une boîte ?",
     answer:
-      "Chaque boite AERA contient 20 pouches au format slim, concu pour un confort optimal sous la levre.",
+      "Chaque boîte AERA contient 20 pouches au format slim, conçu pour un confort optimal sous la lèvre.",
   },
 ]
 
@@ -80,8 +80,8 @@ export default function ContactPage() {
                 FAQ & Contact
               </h1>
               <p className="text-lg md:text-xl text-muted-foreground leading-relaxed">
-                Trouvez les reponses a vos questions ou contactez-nous directement. 
-                Notre equipe est la pour vous accompagner.
+                Trouvez les réponses à vos questions ou contactez-nous directement.
+                Notre équipe est là pour vous accompagner.
               </p>
             </div>
           </FadeUp>
@@ -98,7 +98,7 @@ export default function ContactPage() {
                   Aide
                 </span>
                 <h2 className="text-3xl md:text-4xl font-heading font-semibold tracking-tight">
-                  Questions Frequentes
+                  Questions Fréquentes
                 </h2>
               </div>
             </FadeUp>
@@ -164,7 +164,7 @@ export default function ContactPage() {
                       Parlons ensemble
                     </p>
                     <h3 className="text-2xl md:text-3xl font-heading font-semibold text-background leading-tight">
-                      Une question ? Un partenariat ? Ecrivez-nous.
+                      Une question ? Un partenariat ? Écrivez-nous.
                     </h3>
                   </div>
                 </FadeUp>
@@ -209,7 +209,7 @@ export default function ContactPage() {
                   <div className="hidden lg:block pt-8">
                     <div className="h-px w-full bg-gradient-to-r from-white/20 via-white/10 to-transparent" />
                     <p className="text-background/30 text-sm mt-6 leading-relaxed">
-                      Notre equipe repond generalement sous 24 heures ouvrables.
+                      Notre équipe répond généralement sous 24 heures ouvrables.
                     </p>
                   </div>
                 </FadeUp>
@@ -228,10 +228,10 @@ export default function ContactPage() {
                           <CheckCircle className="h-10 w-10 text-emerald-400" />
                         </div>
                         <h3 className="text-2xl font-semibold mb-3 text-background">
-                          Message envoye !
+                          Message envoyé !
                         </h3>
                         <p className="text-background/60">
-                          Nous vous repondrons dans les plus brefs delais.
+                          Nous vous répondrons dans les plus brefs délais.
                         </p>
                       </div>
                     ) : (

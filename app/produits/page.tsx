@@ -20,9 +20,9 @@ const products = [
     gradient: "from-orange-400 to-red-500",
     bgAccent: "bg-orange-500/10",
     textColor: "text-orange-600",
-    description: "Une explosion fruitee de baies rouges pour une experience douce et rafraichissante.",
+    description: "Une explosion fruitée de baies rouges pour une expérience douce et rafraîchissante.",
     image: "https://hebbkx1anhila5yf.public.blob.vercel-storage.com/WhatsApp%20Image%202026-04-02%20at%2016.00.34%20%283%29-J5vMBbC5QVgsIgtzYPNHWgA7o3Fc1S.jpeg",
-    features: ["Saveur fruitee", "Dosage leger", "Ideal pour debuter"],
+    features: ["Saveur fruitée", "Dosage léger", "Idéal pour débuter"],
   },
   {
     name: "Fresh Mint",
@@ -31,9 +31,9 @@ const products = [
     gradient: "from-teal-400 to-emerald-500",
     bgAccent: "bg-teal-500/10",
     textColor: "text-teal-600",
-    description: "La fraicheur intense de la menthe pour une sensation revigorante et durable.",
+    description: "La fraîcheur intense de la menthe pour une sensation revigorante et durable.",
     image: "https://hebbkx1anhila5yf.public.blob.vercel-storage.com/WhatsApp%20Image%202026-04-02%20at%2016.00.33-MxGm7u37I1Y6Be1NlEe8XEoZhgMCBe.jpeg",
-    features: ["Fraicheur intense", "Dosage equilibre", "Effet longue duree"],
+    features: ["Fraîcheur intense", "Dosage équilibré", "Effet longue durée"],
   },
   {
     name: "Mango",
@@ -42,17 +42,17 @@ const products = [
     gradient: "from-amber-400 to-orange-500",
     bgAccent: "bg-amber-500/10",
     textColor: "text-amber-600",
-    description: "L'exotisme sucre de la mangue avec une intensite remarquable pour les utilisateurs experimentes.",
+    description: "L'exotisme sucré de la mangue, avec une intensité remarquable pour les utilisateurs expérimentés.",
     image: "https://hebbkx1anhila5yf.public.blob.vercel-storage.com/WhatsApp%20Image%202026-04-02%20at%2016.00.34-7ewz8gQ8P21swTFJbh0kowZ4Sg3r4g.jpeg",
-    features: ["Saveur exotique", "Dosage puissant", "Pour experimentes"],
+    features: ["Saveur exotique", "Dosage puissant", "Pour les expérimentés"],
   },
 ]
 
 const specs = [
-  { label: "20 pouches par boite" },
+  { label: "20 pouches par boîte" },
   { label: "Format slim confortable" },
-  { label: "Duree d'action: environ 45 minutes" },
-  { label: "Sans tabac, sans fumee" },
+  { label: "Durée d'action : environ 45 minutes" },
+  { label: "Sans tabac, sans fumée" },
 ]
 
 export default function ProduitsPage() {
@@ -72,8 +72,8 @@ export default function ProduitsPage() {
                 Nos Produits
               </h1>
               <p className="text-lg md:text-xl text-muted-foreground leading-relaxed">
-                Decouvrez notre gamme de nicotine pouches, concue pour offrir 
-                une experience premium adaptee a chaque preference.
+                Découvrez notre gamme de nicotine pouches, conçue pour offrir
+                une expérience premium adaptée à chaque préférence.
               </p>
             </div>
           </FadeUp>
@@ -151,7 +151,7 @@ export default function ProduitsPage() {
                 <ParallaxImage className="rounded-3xl overflow-hidden">
                   <Image
                     src="https://hebbkx1anhila5yf.public.blob.vercel-storage.com/WhatsApp%20Image%202026-04-02%20at%2016.00.34%20%281%29-Vt2mP7pTnnjHC0zv2aNZAFyEnSLspL.jpeg"
-                    alt="Gamme complete AERA"
+                    alt="Gamme complète AERA"
                     width={600}
                     height={700}
                     className="rounded-3xl shadow-2xl"
@@ -166,15 +166,15 @@ export default function ProduitsPage() {
             <SlideInRight>
               <div>
                 <span className="inline-block text-xs font-medium tracking-widest uppercase text-muted-foreground mb-6">
-                  Specifications
+                  Spécifications
                 </span>
                 <h2 className="text-3xl md:text-4xl lg:text-5xl font-heading font-semibold mb-8 tracking-tight">
-                  Une Gamme Complete
+                  Une Gamme Complète
                 </h2>
                 <p className="text-lg text-muted-foreground mb-10 leading-relaxed">
-                  Chaque produit AERA est le resultat d&apos;une recherche approfondie et d&apos;un 
-                  engagement envers l&apos;excellence. De la selection des ingredients a l&apos;emballage 
-                  final, chaque detail est pense pour offrir une experience optimale.
+                  Chaque produit AERA est le résultat d&apos;une recherche approfondie et d&apos;un
+                  engagement envers l&apos;excellence. De la sélection des ingrédients à l&apos;emballage
+                  final, chaque détail est pensé pour offrir une expérience optimale.
                 </p>
                 
                 <ul className="space-y-5">
@@ -211,12 +211,12 @@ export default function ProduitsPage() {
                     Notre Vision
                   </h2>
                   <p className="text-muted-foreground leading-relaxed mb-6">
-                    Chez AERA, nous croyons en un avenir ou les consommateurs ont acces a des 
-                    alternatives de qualite, produites localement avec des standards internationaux.
+                    Chez AERA, nous croyons en un avenir où les consommateurs ont accès à des
+                    alternatives de qualité, produites localement selon des standards internationaux.
                   </p>
                   <p className="text-muted-foreground leading-relaxed">
-                    Notre mission est de devenir la reference des nicotine pouches en Algerie 
-                    et dans la region, en offrant des produits innovants qui respectent a la fois 
+                    Notre mission est de devenir la référence des nicotine pouches en Algérie
+                    et dans la région, en offrant des produits innovants qui respectent à la fois
                     nos clients et notre environnement.
                   </p>
                 </div>

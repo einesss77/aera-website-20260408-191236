@@ -24,7 +24,7 @@ export function Footer() {
               />
             </div>
             <p className="text-background/60 text-sm leading-relaxed max-w-xs">
-              Le premier producteur de nicotine pouches en Algerie. 
+              Le premier producteur de nicotine pouches en Algérie.
               Production locale avec des standards internationaux.
             </p>
           </FadeUp>
@@ -83,12 +83,12 @@ export function Footer() {
           <div className="border-t border-background/10 mt-16 pt-10">
             <div className="flex flex-col md:flex-row items-center justify-between gap-4">
               <p className="text-sm text-background/40">
-                &copy; {currentYear} AERA. Tous droits reserves.
+                &copy; {currentYear} AERA. Tous droits réservés.
               </p>
               <div className="flex items-center gap-2 text-sm text-background/40 transition-transform duration-200 hover:scale-[1.02]">
-                <span>Fabrique avec</span>
+                <span>Fabriqué avec</span>
                 <span className="animate-pulse">&hearts;</span>
-                <span>en Algerie</span>
+                <span>en Algérie</span>
               </div>
             </div>
           </div>

@@ -40,17 +40,17 @@ const features = [
   {
     icon: Factory,
     title: "Production Locale",
-    description: "Fabrique avec fierte en Algerie, soutenant l'economie locale et garantissant la fraicheur.",
+    description: "Fabriqué avec fierté en Algérie, en soutenant l'économie locale et en garantissant la fraîcheur.",
   },
   {
     icon: Award,
     title: "Standards Internationaux",
-    description: "Qualite superieure respectant les normes les plus strictes de l'industrie.",
+    description: "Une qualité supérieure, conforme aux normes les plus strictes de l'industrie.",
   },
   {
     icon: Leaf,
-    title: "Sans Fumee ni Tabac",
-    description: "Une alternative moderne et discrete, sans combustion ni produits du tabac.",
+    title: "Sans Fumée ni Tabac",
+    description: "Une alternative moderne et discrète, sans combustion ni produits du tabac.",
   },
 ]
 
@@ -70,7 +70,7 @@ export default function HomePage() {
               <FadeUp>
                 <span className="inline-flex items-center gap-2 px-4 py-1.5 text-xs font-medium tracking-widest uppercase bg-foreground/5 text-foreground/70 rounded-full mb-8 border border-foreground/10">
                   <span className="w-1.5 h-1.5 rounded-full bg-emerald-500 animate-pulse" />
-                  Premier en Algerie
+                  Premier en Algérie
                 </span>
               </FadeUp>
               
@@ -93,7 +93,7 @@ export default function HomePage() {
                   </FadeUp>
                   <FadeUp delay={0.4}>
                     <span className="block text-lg md:text-xl lg:text-2xl font-normal text-muted-foreground mt-4 tracking-normal">
-                      en <span className="text-foreground font-medium">Algerie</span>
+                      en <span className="text-foreground font-medium">Algérie</span>
                     </span>
                   </FadeUp>
                 </h1>
@@ -101,7 +101,7 @@ export default function HomePage() {
               
               <FadeUp delay={0.5}>
                 <p className="text-base md:text-lg text-muted-foreground mb-10 max-w-md mx-auto lg:mx-0 leading-relaxed">
-                  Decouvrez AERA, une nouvelle ere de satisfaction. Production locale, qualite internationale.
+                  Découvrez AERA, une nouvelle ère de satisfaction. Production locale, qualité internationale.
                 </p>
               </FadeUp>
               
@@ -207,16 +207,16 @@ export default function HomePage() {
           <FadeUp>
             <div className="max-w-4xl mx-auto text-center">
               <span className="inline-block text-xs font-medium tracking-widest uppercase text-muted-foreground mb-6">
-                A propos
+                À propos
               </span>
               <h2 className="text-3xl md:text-4xl lg:text-5xl font-heading font-semibold mb-8 tracking-tight">
                 Qui sommes-nous
               </h2>
               <p className="text-lg md:text-xl text-muted-foreground leading-relaxed">
-                AERA est ne d&apos;une vision simple mais audacieuse : offrir aux consommateurs algeriens 
-                une alternative moderne, discrete et de haute qualite aux produits traditionnels du tabac. 
-                En tant que premier producteur local de nicotine pouches en Algerie, nous combinons 
-                expertise internationale et savoir-faire local pour creer des produits qui repondent 
+                AERA est née d&apos;une vision simple mais audacieuse : offrir aux consommateurs algériens
+                une alternative moderne, discrète et de haute qualité aux produits traditionnels du tabac.
+                En tant que premier producteur local de nicotine pouches en Algérie, nous combinons
+                expertise internationale et savoir-faire local pour créer des produits qui répondent
                 aux standards les plus exigeants.
               </p>
             </div>
@@ -254,8 +254,8 @@ export default function HomePage() {
             <FadeUp delay={0.2}>
               <div className="flex items-end lg:pb-4">
                 <p className="text-lg md:text-xl text-background/60 leading-relaxed max-w-md">
-                  Une experience unique qui allie innovation, qualite et respect de vos attentes. 
-                  Decouvrez ce qui fait notre difference.
+                  Une expérience unique qui allie innovation, qualité et respect de vos attentes.
+                  Découvrez ce qui fait notre différence.
                 </p>
               </div>
             </FadeUp>
@@ -312,7 +312,7 @@ export default function HomePage() {
                 Nos Produits
               </h2>
               <p className="text-lg text-muted-foreground max-w-2xl mx-auto">
-                Trois saveurs uniques pour satisfaire tous les gouts
+                Trois saveurs uniques pour satisfaire tous les goûts
               </p>
             </div>
           </FadeUp>
@@ -371,7 +371,7 @@ export default function HomePage() {
               <div className="relative">
                 <ParallaxImage className="rounded-3xl overflow-hidden">
                   <Image
-                    src="https://hebbkx1anhila5yf.public.blob.vercel-storage.com/WhatsApp%20Image%202026-04-02%20at%2016.00.34%20%282%29-PaAgbKZN20laqRS3KvuAQVc35bH0tz.jpeg"
+                    src="/images/premium-edition.png"
                     alt="AERA Premium Edition - 8mg"
                     width={600}
                     height={500}
@@ -386,20 +386,20 @@ export default function HomePage() {
             <SlideInRight>
               <div className="text-center lg:text-left">
                 <span className="inline-block text-xs font-medium tracking-widest uppercase text-background/50 mb-6">
-                  Edition Premium
+                  Édition Premium
                 </span>
                 <h2 className="text-3xl md:text-4xl lg:text-5xl font-heading font-semibold mb-8 tracking-tight">
-                  L&apos;Excellence a l&apos;Etat Pur
+                  L&apos;Excellence à l&apos;État Pur
                 </h2>
                 <p className="text-lg text-background/70 leading-relaxed mb-10">
-                  Notre edition premium incarne le raffinement absolu. Concue pour les connaisseurs 
-                  les plus exigeants, elle offre une experience incomparable avec son design elegant 
-                  et sa formulation sophistiquee.
+                  Notre édition premium incarne le raffinement absolu. Conçue pour les connaisseurs
+                  les plus exigeants, elle offre une expérience incomparable grâce à son design élégant
+                  et à sa formulation sophistiquée.
                 </p>
                 <MagneticWrapper>
                   <Button asChild size="lg" variant="secondary" className="rounded-full h-14 px-8">
                     <Link href="/produits">
-                      Decouvrir
+                      Découvrir
                       <ArrowRight className="ml-2 h-4 w-4" />
                     </Link>
                   </Button>

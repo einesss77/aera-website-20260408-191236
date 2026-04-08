@@ -19,9 +19,9 @@ const inter = Inter({
 });
 
 export const metadata: Metadata = {
-  title: 'AERA | Premier Producteur de Nicotine Pouches en Algerie',
-  description: 'AERA - Le premier producteur de nicotine pouches en Algerie. Production locale, standards internationaux, sans fumee ni tabac.',
-  keywords: ['nicotine pouches', 'AERA', 'Algerie', 'sans tabac', 'sans fumee'],
+  title: 'AERA | Premier producteur de nicotine pouches en Algérie',
+  description: 'AERA, le premier producteur de nicotine pouches en Algérie. Production locale, standards internationaux, sans fumée ni tabac.',
+  keywords: ['nicotine pouches', 'AERA', 'Algérie', 'sans tabac', 'sans fumée'],
 }
 
 export default function RootLayout({
