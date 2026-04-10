@@ -4,15 +4,16 @@ import Link from "next/link"
 import Image from "next/image"
 import { Mail, MapPin } from "lucide-react"
 import { FadeUp } from "@/components/animations"
+import { useLanguage } from "@/components/language-provider"
 
 export function Footer() {
   const currentYear = new Date().getFullYear()
+  const { copy } = useLanguage()
 
   return (
     <footer className="bg-foreground text-background">
       <div className="container mx-auto px-6 md:px-8 py-16 md:py-20">
         <div className="grid grid-cols-1 md:grid-cols-3 gap-12 md:gap-16">
-          {/* Brand */}
           <FadeUp>
             <div className="mb-5">
               <Image
@@ -23,23 +24,15 @@ export function Footer() {
                 className="h-10 w-auto object-contain brightness-0 invert transition-transform duration-200 hover:scale-[1.02]"
               />
             </div>
-            <p className="text-background/60 text-sm leading-relaxed max-w-xs">
-              Le premier producteur de nicotine pouches en Algérie.
-              Production locale avec des standards internationaux.
-            </p>
+            <p className="text-background/60 text-sm leading-relaxed max-w-xs">{copy.footer.description}</p>
           </FadeUp>
 
-          {/* Links */}
           <FadeUp delay={0.1}>
             <h4 className="text-sm font-semibold uppercase tracking-wider mb-6 text-background/80">
-              Navigation
+              {copy.footer.navigation}
             </h4>
             <nav className="flex flex-col gap-4">
-              {[
-                { href: "/", label: "Accueil" },
-                { href: "/produits", label: "Produits" },
-                { href: "/contact", label: "FAQ / Contact" },
-              ].map((link) => (
+              {copy.header.nav.map((link) => (
                 <Link
                   key={link.href}
                   href={link.href}
@@ -54,17 +47,14 @@ export function Footer() {
             </nav>
           </FadeUp>
 
-          {/* Contact */}
           <FadeUp delay={0.2}>
             <h4 className="text-sm font-semibold uppercase tracking-wider mb-6 text-background/80">
-              Contact
+              {copy.footer.contact}
             </h4>
             <div className="flex flex-col gap-5">
               <div className="flex items-start gap-3">
                 <MapPin className="h-4 w-4 mt-0.5 text-background/50" />
-                <span className="text-sm text-background/60">
-                  Draria El Achour, Alger
-                </span>
+                <span className="text-sm text-background/60">{copy.footer.address}</span>
               </div>
               <div className="flex items-center gap-3">
                 <Mail className="h-4 w-4 text-background/50" />
@@ -83,12 +73,12 @@ export function Footer() {
           <div className="border-t border-background/10 mt-16 pt-10">
             <div className="flex flex-col md:flex-row items-center justify-between gap-4">
               <p className="text-sm text-background/40">
-                &copy; {currentYear} AERA. Tous droits réservés.
+                &copy; {currentYear} AERA. {copy.footer.rights}
               </p>
               <div className="flex items-center gap-2 text-sm text-background/40 transition-transform duration-200 hover:scale-[1.02]">
-                <span>Fabriqué avec</span>
+                <span>{copy.footer.madeWith}</span>
                 <span className="animate-pulse">&hearts;</span>
-                <span>en Algérie</span>
+                <span>{copy.footer.madeIn}</span>
               </div>
             </div>
           </div>

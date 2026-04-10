@@ -5,11 +5,13 @@ import Image from "next/image"
 import { useState, useEffect } from "react"
 import { Menu, X } from "lucide-react"
 import { Button } from "@/components/ui/button"
+import { useLanguage } from "@/components/language-provider"
 
 export function Header() {
   const [isMenuOpen, setIsMenuOpen] = useState(false)
   const [isScrolled, setIsScrolled] = useState(false)
   const [isLoaded, setIsLoaded] = useState(false)
+  const { language, setLanguage, copy } = useLanguage()
 
   useEffect(() => {
     setIsLoaded(true)
@@ -20,11 +22,7 @@ export function Header() {
     return () => window.removeEventListener("scroll", handleScroll)
   }, [])
 
-  const navLinks = [
-    { href: "/", label: "Accueil" },
-    { href: "/produits", label: "Produits" },
-    { href: "/contact", label: "FAQ / Contact" },
-  ]
+  const navLinks = copy.header.nav
 
   return (
     <header
@@ -34,15 +32,12 @@ export function Header() {
         transition: "transform 0.6s cubic-bezier(0.25, 0.4, 0.25, 1)",
       }}
     >
-      {/* Glassy container with margin */}
-      <div 
+      <div
         className={`mx-auto px-4 md:px-6 pt-4 transition-all duration-700 ease-[cubic-bezier(0.25,0.4,0.25,1)] ${
-          isScrolled
-            ? "max-w-3xl"
-            : "max-w-7xl"
+          isScrolled ? "max-w-4xl" : "max-w-7xl"
         }`}
       >
-        <div 
+        <div
           className={`rounded-2xl transition-all duration-500 ${
             isScrolled
               ? "bg-white/80 backdrop-blur-xl shadow-lg shadow-black/[0.05] border border-white/30"
@@ -62,29 +57,45 @@ export function Header() {
                 />
               </Link>
 
-              {/* Desktop Navigation */}
-              <nav className={`hidden md:flex items-center transition-all duration-500 ${isScrolled ? "gap-8" : "gap-12"}`}>
-                {navLinks.map((link, index) => (
-                  <div
-                    key={link.href}
-                    style={{
-                      opacity: isLoaded ? 1 : 0,
-                      transform: isLoaded ? "translateY(0)" : "translateY(-20px)",
-                      transition: `all 0.5s cubic-bezier(0.25, 0.4, 0.25, 1) ${0.1 + index * 0.1}s`,
-                    }}
-                  >
-                    <Link
-                      href={link.href}
-                      className="relative text-sm font-medium text-muted-foreground hover:text-foreground transition-colors duration-300 group py-2"
+              <div className={`hidden md:flex items-center transition-all duration-500 ${isScrolled ? "gap-6" : "gap-10"}`}>
+                <nav className="flex items-center gap-8">
+                  {navLinks.map((link, index) => (
+                    <div
+                      key={link.href}
+                      style={{
+                        opacity: isLoaded ? 1 : 0,
+                        transform: isLoaded ? "translateY(0)" : "translateY(-20px)",
+                        transition: `all 0.5s cubic-bezier(0.25, 0.4, 0.25, 1) ${0.1 + index * 0.1}s`,
+                      }}
                     >
-                      {link.label}
-                      <span className="absolute bottom-0 left-0 w-0 h-px bg-foreground group-hover:w-full transition-all duration-300" />
-                    </Link>
-                  </div>
-                ))}
-              </nav>
+                      <Link
+                        href={link.href}
+                        className="relative text-sm font-medium text-muted-foreground hover:text-foreground transition-colors duration-300 group py-2"
+                      >
+                        {link.label}
+                        <span className="absolute bottom-0 left-0 w-0 h-px bg-foreground group-hover:w-full transition-all duration-300" />
+                      </Link>
+                    </div>
+                  ))}
+                </nav>
 
-              {/* Mobile Menu Button */}
+                <div className="flex items-center gap-1 rounded-full border border-border/60 bg-background/80 p-1 shadow-sm">
+                  {(["fr", "en"] as const).map((lang) => (
+                    <button
+                      key={lang}
+                      type="button"
+                      onClick={() => setLanguage(lang)}
+                      aria-label={`${copy.header.languageLabel}: ${lang.toUpperCase()}`}
+                      className={`rounded-full px-3 py-1.5 text-xs font-semibold uppercase tracking-[0.18em] transition-colors ${
+                        language === lang ? "bg-foreground text-background" : "text-muted-foreground hover:text-foreground"
+                      }`}
+                    >
+                      {lang}
+                    </button>
+                  ))}
+                </div>
+              </div>
+
               <div
                 style={{
                   opacity: isLoaded ? 1 : 0,
@@ -96,7 +107,7 @@ export function Header() {
                   size="icon"
                   className="md:hidden relative w-10 h-10"
                   onClick={() => setIsMenuOpen(!isMenuOpen)}
-                  aria-label={isMenuOpen ? "Fermer le menu" : "Ouvrir le menu"}
+                  aria-label={isMenuOpen ? copy.header.closeMenu : copy.header.openMenu}
                 >
                   <span
                     className={`absolute transition-all duration-200 ${
@@ -116,13 +127,32 @@ export function Header() {
               </div>
             </div>
 
-            {/* Mobile Navigation */}
             <nav
               className={`md:hidden overflow-hidden transition-all duration-300 ease-out ${
-                isMenuOpen ? "max-h-64 opacity-100" : "max-h-0 opacity-0"
+                isMenuOpen ? "max-h-80 opacity-100" : "max-h-0 opacity-0"
               }`}
             >
               <div className="py-6 border-t border-border/50">
+                <div className="mb-5 flex items-center justify-between gap-3">
+                  <span className="text-xs font-medium uppercase tracking-[0.18em] text-muted-foreground">
+                    {copy.header.languageLabel}
+                  </span>
+                  <div className="flex items-center gap-1 rounded-full border border-border/60 bg-background/80 p-1">
+                    {(["fr", "en"] as const).map((lang) => (
+                      <button
+                        key={lang}
+                        type="button"
+                        onClick={() => setLanguage(lang)}
+                        className={`rounded-full px-3 py-1.5 text-xs font-semibold uppercase tracking-[0.18em] transition-colors ${
+                          language === lang ? "bg-foreground text-background" : "text-muted-foreground hover:text-foreground"
+                        }`}
+                      >
+                        {lang}
+                      </button>
+                    ))}
+                  </div>
+                </div>
+
                 <div className="flex flex-col gap-1">
                   {navLinks.map((link, index) => (
                     <div

@@ -5,6 +5,7 @@ import './globals.css'
 import { Header } from '@/components/header'
 import { Footer } from '@/components/footer'
 import { IntroWrapper } from '@/components/intro-animation'
+import { LanguageProvider } from '@/components/language-provider'
 
 const cormorant = Cormorant_Garamond({ 
   subsets: ["latin"], 
@@ -32,11 +33,13 @@ export default function RootLayout({
   return (
     <html lang="fr" suppressHydrationWarning data-scroll-behavior="smooth">
       <body className={`${cormorant.variable} ${inter.variable} font-body antialiased`}>
-        <IntroWrapper>
-          <Header />
-          <main>{children}</main>
-          <Footer />
-        </IntroWrapper>
+        <LanguageProvider>
+          <IntroWrapper>
+            <Header />
+            <main>{children}</main>
+            <Footer />
+          </IntroWrapper>
+        </LanguageProvider>
         <Analytics />
       </body>
     </html>
