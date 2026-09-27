@@ -22,6 +22,7 @@ export function Footer() {
                 width={120}
                 height={48}
                 className="h-10 w-auto object-contain brightness-0 invert transition-transform duration-200 hover:scale-[1.02]"
+                style={{ width: "auto" }}
               />
             </div>
             <p className="text-background/60 text-sm leading-relaxed max-w-xs">{copy.footer.description}</p>

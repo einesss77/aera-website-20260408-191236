@@ -6,6 +6,7 @@ export const translations = {
       nav: [
         { href: "/", label: "Accueil" },
         { href: "/produits", label: "Produits" },
+        { href: "/puff", label: "AERA Puff" },
         { href: "/contact", label: "FAQ / Contact" },
       ],
       openMenu: "Ouvrir le menu",
@@ -175,6 +176,7 @@ export const translations = {
       nav: [
         { href: "/", label: "Home" },
         { href: "/produits", label: "Products" },
+        { href: "/puff", label: "AERA Puff" },
         { href: "/contact", label: "FAQ / Contact" },
       ],
       openMenu: "Open menu",

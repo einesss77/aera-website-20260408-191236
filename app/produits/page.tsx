@@ -64,14 +64,14 @@ export default function ProduitsPage() {
             {products.map((product, index) => (
               <FadeUp key={productCopy.products[index].name} delay={index * 0.2}>
                 <HoverScale>
-                  <Card className="overflow-hidden border-0 shadow-2xl group h-full">
-                    <div className="relative aspect-[3/4] overflow-hidden">
+                  <Card className="premium-border overflow-hidden border-0 shadow-2xl shadow-black/[0.08] group h-full transition-all duration-500 hover:-translate-y-1 hover:shadow-black/[0.14]">
+                    <div className="premium-frame relative aspect-[3/4] overflow-hidden">
                       <div className="absolute inset-0 transition-transform duration-700 group-hover:scale-105">
                         <Image
                           src={product.image}
                           alt={`AERA ${productCopy.products[index].name} - ${productCopy.products[index].strength}`}
                           fill
-                          className="object-cover"
+                          className="premium-media object-cover"
                         />
                       </div>
                       <div className="absolute inset-0 bg-gradient-to-t from-black/70 via-black/20 to-transparent" />
@@ -123,13 +123,13 @@ export default function ProduitsPage() {
           <div className="grid lg:grid-cols-2 gap-16 items-center">
             <SlideInLeft>
               <div className="relative">
-                <ParallaxImage className="rounded-3xl overflow-hidden">
+                <ParallaxImage className="premium-frame rounded-3xl overflow-hidden shadow-2xl shadow-black/10">
                   <Image
                     src="https://hebbkx1anhila5yf.public.blob.vercel-storage.com/WhatsApp%20Image%202026-04-02%20at%2016.00.34%20%281%29-Vt2mP7pTnnjHC0zv2aNZAFyEnSLspL.jpeg"
                     alt={productCopy.imageAlt}
                     width={600}
                     height={700}
-                    className="rounded-3xl shadow-2xl"
+                    className="premium-media rounded-3xl"
                   />
                 </ParallaxImage>
 
@@ -186,13 +186,13 @@ export default function ProduitsPage() {
 
               <FadeUp delay={0.2}>
                 <div className="relative">
-                  <ParallaxImage className="rounded-3xl overflow-hidden">
+                  <ParallaxImage className="premium-frame rounded-3xl overflow-hidden shadow-2xl shadow-black/10">
                     <Image
                       src="https://hebbkx1anhila5yf.public.blob.vercel-storage.com/WhatsApp%20Image%202026-04-02%20at%2016.00.34%20%284%29-IZhdT2IUNWVPUfWy35b93WgKn7FuHx.jpeg"
                       alt={productCopy.missionImageAlt}
                       width={500}
                       height={600}
-                      className="rounded-3xl shadow-2xl w-full h-auto"
+                      className="premium-media rounded-3xl w-full h-auto"
                     />
                   </ParallaxImage>
 

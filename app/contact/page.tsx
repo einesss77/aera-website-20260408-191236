@@ -178,7 +178,7 @@ export default function ContactPage() {
                 <div className="relative">
                   <div className="absolute -inset-1 rounded-3xl bg-gradient-to-b from-white/10 to-transparent opacity-50 blur-xl" />
 
-                  <div className="relative rounded-3xl border border-white/10 bg-white/5 backdrop-blur-sm p-8 md:p-10">
+                  <div className="premium-border relative rounded-3xl border border-white/10 bg-white/5 backdrop-blur-sm p-8 shadow-2xl shadow-black/20 md:p-10">
                     {isSubmitted ? (
                       <div className="text-center py-12 animate-in fade-in zoom-in duration-300">
                         <div className="w-20 h-20 rounded-full bg-emerald-500/20 flex items-center justify-center mx-auto mb-6">

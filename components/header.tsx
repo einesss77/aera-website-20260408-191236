@@ -38,10 +38,10 @@ export function Header() {
         }`}
       >
         <div
-          className={`rounded-2xl transition-all duration-500 ${
+          className={`premium-border rounded-2xl transition-all duration-500 ${
             isScrolled
-              ? "bg-white/80 backdrop-blur-xl shadow-lg shadow-black/[0.05] border border-white/30"
-              : "bg-white/50 backdrop-blur-md border border-white/15"
+              ? "bg-white/80 backdrop-blur-xl shadow-xl shadow-black/[0.06] border border-white/35"
+              : "bg-white/56 backdrop-blur-md border border-white/20"
           }`}
         >
           <div className={`transition-all duration-500 ${isScrolled ? "px-4 md:px-6" : "px-6 md:px-8"}`}>
@@ -53,6 +53,7 @@ export function Header() {
                   width={180}
                   height={72}
                   className={`w-auto object-contain transition-all duration-500 ${isScrolled ? "h-10 md:h-11" : "h-14 md:h-16"}`}
+                  style={{ width: "auto" }}
                   priority
                 />
               </Link>

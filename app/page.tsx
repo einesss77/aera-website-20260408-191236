@@ -37,6 +37,26 @@ export default function HomePage() {
   const { language, copy } = useLanguage()
   const home = copy.home
   const countryPrefix = language === "fr" ? "en " : "in "
+  const puffIntro =
+    language === "fr"
+      ? {
+          eyebrow: "Nouvelle expérience",
+          title: "AERA Puff",
+          description:
+            "Une extension plus intense de l'univers AERA: des puffs au design premium, pensées pour la saveur, la performance et une utilisation simple.",
+          cta: "Découvrir AERA Puff",
+          stats: ["10K / 30K / 60K+", "Dual Mesh", "USB-C"],
+          imageAlt: "AERA Puff premium rouge et vert",
+        }
+      : {
+          eyebrow: "New experience",
+          title: "AERA Puff",
+          description:
+            "A more intense extension of the AERA universe: premium disposable vapes designed for flavor, performance, and simple everyday use.",
+          cta: "Discover AERA Puff",
+          stats: ["10K / 30K / 60K+", "Dual Mesh", "USB-C"],
+          imageAlt: "Red and green premium AERA Puff",
+        }
 
   return (
     <div className="min-h-screen overflow-hidden">
@@ -128,28 +148,28 @@ export default function HomePage() {
                   <div className="relative">
                     <div className="absolute inset-0 bg-gradient-to-br from-emerald-500/20 via-transparent to-amber-500/20 rounded-full blur-3xl scale-75" />
 
-                    <div className="relative rounded-[2rem] overflow-hidden">
+                    <div className="premium-frame relative rounded-[2rem] overflow-hidden shadow-2xl shadow-black/10">
                       <Image
                         src="https://hebbkx1anhila5yf.public.blob.vercel-storage.com/WhatsApp%20Image%202026-04-02%20at%2016.00.33%20%281%29-pRv6uk6SYwnhA5v7LDUlPxk1F2BElw.jpeg"
                         alt={home.heroImageAlt}
                         width={600}
                         height={500}
-                        className="w-full h-auto"
+                        className="premium-media w-full h-auto"
                         priority
                       />
                     </div>
 
-                    <div className="absolute -top-4 -right-4 bg-background shadow-xl rounded-2xl px-4 py-3 border border-border/50 animate-[float_4s_ease-in-out_infinite_0.5s]">
+                    <div className="absolute -top-4 -right-4 hidden bg-background shadow-xl rounded-2xl px-4 py-3 border border-border/50 animate-[float_4s_ease-in-out_infinite_0.5s] sm:block">
                       <p className="text-xs text-muted-foreground">{home.products[1].name}</p>
                       <p className="text-sm font-semibold">{home.products[1].strength}</p>
                     </div>
 
-                    <div className="absolute -bottom-2 -left-4 bg-background shadow-xl rounded-2xl px-4 py-3 border border-border/50 animate-[float_4s_ease-in-out_infinite_1s]">
+                    <div className="absolute -bottom-2 -left-4 hidden bg-background shadow-xl rounded-2xl px-4 py-3 border border-border/50 animate-[float_4s_ease-in-out_infinite_1s] sm:block">
                       <p className="text-xs text-muted-foreground">{home.products[2].name}</p>
                       <p className="text-sm font-semibold">{home.products[2].strength}</p>
                     </div>
 
-                    <div className="absolute top-1/2 -right-8 bg-foreground text-background shadow-xl rounded-2xl px-4 py-3 animate-[float_4s_ease-in-out_infinite_1.5s]">
+                    <div className="absolute top-1/2 -right-8 hidden bg-foreground text-background shadow-xl rounded-2xl px-4 py-3 animate-[float_4s_ease-in-out_infinite_1.5s] sm:block">
                       <p className="text-xs text-background/60">{home.products[0].name}</p>
                       <p className="text-sm font-semibold">{home.products[0].strength}</p>
                     </div>
@@ -274,14 +294,14 @@ export default function HomePage() {
             {products.map((product, index) => (
               <FadeUp key={home.products[index].name} delay={index * 0.15}>
                 <HoverScale scale={1.03}>
-                  <Card className="overflow-hidden border-0 shadow-xl group cursor-pointer">
-                    <div className="relative aspect-[4/5] overflow-hidden">
+                  <Card className="premium-border overflow-hidden border-0 shadow-xl shadow-black/[0.08] group cursor-pointer transition-all duration-500 hover:-translate-y-1 hover:shadow-2xl hover:shadow-black/[0.12]">
+                    <div className="premium-frame relative aspect-[4/5] overflow-hidden">
                       <div className="absolute inset-0 transition-transform duration-600 group-hover:scale-105">
                         <Image
                           src={product.image}
                           alt={`AERA ${home.products[index].name} - ${home.products[index].strength}`}
                           fill
-                          className="object-cover"
+                          className="premium-media object-cover"
                         />
                       </div>
                       <div className="absolute inset-0 bg-gradient-to-t from-black/60 via-transparent to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-500" />
@@ -317,17 +337,70 @@ export default function HomePage() {
       </section>
 
       <section className="py-32 md:py-40 bg-foreground text-background overflow-hidden">
+        <div className="container mx-auto px-6 md:px-8 pb-24 md:pb-32">
+          <FadeUp>
+            <div className="premium-border premium-grain relative overflow-hidden rounded-[1.75rem] border border-background/10 bg-[#120303] text-white shadow-2xl shadow-black/20">
+              <div className="absolute inset-0 bg-[radial-gradient(circle_at_78%_22%,rgba(244,63,94,0.28),transparent_30%),radial-gradient(circle_at_55%_76%,rgba(92,180,35,0.12),transparent_25%),linear-gradient(135deg,#070303_0%,#210607_55%,#3b0909_100%)]" />
+              <div className="absolute inset-0 opacity-[0.08] [background-image:linear-gradient(90deg,white_1px,transparent_1px),linear-gradient(white_1px,transparent_1px)] [background-size:56px_56px]" />
+
+              <div className="relative grid gap-10 p-6 md:p-10 lg:grid-cols-2 lg:items-center">
+                <div className="max-w-xl">
+                  <p className="mb-4 text-xs font-semibold uppercase tracking-[0.28em] text-red-100/45">
+                    {puffIntro.eyebrow}
+                  </p>
+                  <h2 className="font-heading text-4xl font-semibold tracking-tight md:text-6xl">{puffIntro.title}</h2>
+                  <p className="mt-6 text-base leading-8 text-white/62 md:text-lg">{puffIntro.description}</p>
+
+                  <div className="mt-7 flex flex-wrap gap-2">
+                    {puffIntro.stats.map((stat) => (
+                      <span
+                        key={stat}
+                        className="rounded-full border border-white/10 bg-white/[0.06] px-4 py-2 text-xs font-semibold uppercase tracking-[0.18em] text-white/65"
+                      >
+                        {stat}
+                      </span>
+                    ))}
+                  </div>
+
+                  <MagneticWrapper className="mt-9 inline-flex">
+                    <Button asChild size="lg" variant="secondary" className="h-14 w-full rounded-full px-5 text-sm sm:w-auto sm:px-7">
+                      <Link href="/puff">
+                        {puffIntro.cta}
+                        <ArrowRight className="ml-2 h-4 w-4" />
+                      </Link>
+                    </Button>
+                  </MagneticWrapper>
+                </div>
+
+                <div className="relative">
+                  <div className="absolute -inset-3 rounded-[1.5rem] bg-gradient-to-br from-red-500/22 via-white/5 to-lime-400/12 blur-xl" />
+                  <div className="premium-frame relative overflow-hidden rounded-[1.25rem] border border-white/10 bg-black">
+                    <Image
+                      src="/images/puffs/hero-aera-puff-red-green.png"
+                      alt={puffIntro.imageAlt}
+                      width={1672}
+                      height={941}
+                      className="premium-media animate-slow-pan aspect-[16/9] h-auto w-full object-cover object-[58%_50%]"
+                    />
+                    <div className="pointer-events-none absolute inset-0 bg-gradient-to-r from-black/20 via-transparent to-transparent" />
+                  </div>
+                </div>
+              </div>
+            </div>
+          </FadeUp>
+        </div>
+
         <div className="container mx-auto px-6 md:px-8">
           <div className="grid lg:grid-cols-2 gap-16 items-center">
             <SlideInLeft>
               <div className="relative">
-                <ParallaxImage className="rounded-3xl overflow-hidden">
+                <ParallaxImage className="premium-frame rounded-3xl overflow-hidden shadow-2xl shadow-black/25">
                   <Image
                     src="/images/premium-edition.png"
                     alt={home.premiumImageAlt}
                     width={600}
                     height={500}
-                    className="rounded-3xl"
+                    className="premium-media rounded-3xl"
                   />
                 </ParallaxImage>
                 <div className="absolute -bottom-4 -right-4 w-40 h-40 bg-gradient-to-br from-amber-500/30 to-amber-700/30 rounded-full blur-2xl animate-pulse" />

@@ -167,6 +167,38 @@
   }
 }
 
+@keyframes premium-sheen {
+  0% {
+    transform: translateX(-140%) skewX(-18deg);
+    opacity: 0;
+  }
+  18% {
+    opacity: 0.55;
+  }
+  48%, 100% {
+    transform: translateX(180%) skewX(-18deg);
+    opacity: 0;
+  }
+}
+
+@keyframes slow-pan {
+  0%, 100% {
+    transform: scale(1) translate3d(0, 0, 0);
+  }
+  50% {
+    transform: scale(1.035) translate3d(-1%, -1%, 0);
+  }
+}
+
+@keyframes premium-border {
+  0%, 100% {
+    opacity: 0.28;
+  }
+  50% {
+    opacity: 0.72;
+  }
+}
+
 .animate-pulse-slow {
   animation: pulse-slow 8s ease-in-out infinite;
 }
@@ -186,4 +218,80 @@
 /* Smooth transitions for all interactive elements */
 .transition-smooth {
   transition: all 0.3s cubic-bezier(0.25, 0.4, 0.25, 1);
+}
+
+.premium-frame {
+  position: relative;
+  overflow: hidden;
+  isolation: isolate;
+}
+
+.premium-frame::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+  background:
+    linear-gradient(135deg, rgba(255,255,255,0.22), transparent 22%, transparent 76%, rgba(255,255,255,0.08)),
+    radial-gradient(circle at 22% 10%, rgba(255,255,255,0.16), transparent 30%);
+  opacity: 0.55;
+  z-index: 2;
+}
+
+.premium-frame::after {
+  content: "";
+  position: absolute;
+  inset: -40% auto -40% -55%;
+  width: 36%;
+  pointer-events: none;
+  background: linear-gradient(90deg, transparent, rgba(255,255,255,0.24), transparent);
+  animation: premium-sheen 7s ease-in-out infinite;
+  z-index: 3;
+}
+
+.premium-media {
+  transition: transform 900ms cubic-bezier(0.16, 1, 0.3, 1), filter 900ms cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+.group:hover .premium-media,
+.premium-frame:hover .premium-media {
+  transform: scale(1.045);
+  filter: saturate(1.07) contrast(1.03);
+}
+
+.premium-border {
+  position: relative;
+}
+
+.premium-border::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  border-radius: inherit;
+  padding: 1px;
+  pointer-events: none;
+  background: linear-gradient(135deg, rgba(255,255,255,0.32), transparent 32%, rgba(255,255,255,0.12));
+  mask: linear-gradient(#000 0 0) content-box, linear-gradient(#000 0 0);
+  mask-composite: exclude;
+  animation: premium-border 5s ease-in-out infinite;
+}
+
+.premium-grain {
+  position: relative;
+}
+
+.premium-grain::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+  opacity: 0.035;
+  background-image:
+    repeating-linear-gradient(0deg, rgba(255,255,255,0.7) 0 1px, transparent 1px 3px),
+    repeating-linear-gradient(90deg, rgba(0,0,0,0.45) 0 1px, transparent 1px 4px);
+  mix-blend-mode: overlay;
+}
+
+.animate-slow-pan {
+  animation: slow-pan 14s ease-in-out infinite;
 }
