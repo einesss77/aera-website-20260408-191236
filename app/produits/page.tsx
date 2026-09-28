@@ -34,6 +34,21 @@ const products = [
   },
 ]
 
+const strongProducts = [
+  {
+    image: "/images/pouches/aera-dynamite-50mg.png",
+    accent: "from-red-600 to-rose-500",
+    bg: "bg-red-500/10",
+    text: "text-red-600",
+  },
+  {
+    image: "/images/pouches/aera-tnt-60mg.png",
+    accent: "from-amber-500 to-yellow-400",
+    bg: "bg-amber-500/10",
+    text: "text-amber-600",
+  },
+]
+
 export default function ProduitsPage() {
   const { copy } = useLanguage()
   const productCopy = copy.products
@@ -110,6 +125,74 @@ export default function ProduitsPage() {
                         ))}
                       </div>
                     </CardContent>
+                  </Card>
+                </HoverScale>
+              </FadeUp>
+            ))}
+          </div>
+        </div>
+      </section>
+
+      <section className="relative overflow-hidden bg-[#100606] px-6 py-20 text-white md:px-8 md:py-32">
+        <div className="absolute inset-0 bg-[radial-gradient(circle_at_20%_20%,rgba(239,68,68,0.24),transparent_28%),radial-gradient(circle_at_78%_72%,rgba(245,158,11,0.18),transparent_28%),linear-gradient(135deg,#080303_0%,#190606_54%,#271006_100%)]" />
+        <div className="absolute inset-0 opacity-[0.06] [background-image:linear-gradient(90deg,white_1px,transparent_1px),linear-gradient(white_1px,transparent_1px)] [background-size:60px_60px]" />
+
+        <div className="container relative z-10 mx-auto">
+          <FadeUp>
+            <div className="mx-auto mb-14 max-w-3xl text-center">
+              <span className="mb-5 inline-block text-xs font-medium uppercase tracking-[0.28em] text-white/42">
+                {productCopy.strongEyebrow}
+              </span>
+              <h2 className="font-heading text-4xl font-semibold tracking-tight md:text-6xl">
+                {productCopy.strongTitle}
+              </h2>
+              <p className="mx-auto mt-6 max-w-2xl text-base leading-8 text-white/58 md:text-lg">
+                {productCopy.strongDescription}
+              </p>
+            </div>
+          </FadeUp>
+
+          <div className="grid gap-7 lg:grid-cols-2">
+            {strongProducts.map((product, index) => (
+              <FadeUp key={productCopy.strongProducts[index].name} delay={index * 0.12}>
+                <HoverScale>
+                  <Card className="premium-border group h-full overflow-hidden rounded-[1.5rem] border-white/10 bg-white/[0.055] text-white shadow-2xl shadow-black/30 backdrop-blur transition-all duration-500 hover:-translate-y-1 hover:bg-white/[0.075]">
+                    <div className="grid h-full md:grid-cols-[1.05fr_0.95fr]">
+                      <div className="premium-frame relative min-h-[360px] bg-black">
+                        <Image
+                          src={product.image}
+                          alt={`${productCopy.strongProducts[index].name} ${productCopy.strongProducts[index].strength}`}
+                          fill
+                          className="premium-media object-cover"
+                        />
+                        <div className="absolute inset-0 bg-gradient-to-t from-black/55 via-transparent to-transparent" />
+                      </div>
+
+                      <CardContent className="flex flex-col justify-between p-7 md:p-8">
+                        <div>
+                          <Badge className={`${product.bg} ${product.text} mb-6 border-0 px-3 py-1 text-xs font-semibold`}>
+                            {productCopy.strongProducts[index].strength}
+                          </Badge>
+                          <h3 className="text-3xl font-semibold tracking-tight">
+                            {productCopy.strongProducts[index].name}
+                          </h3>
+                          <p className="mt-5 leading-7 text-white/58">
+                            {productCopy.strongProducts[index].description}
+                          </p>
+                        </div>
+
+                        <div className="mt-7 flex flex-wrap gap-2">
+                          {productCopy.strongProducts[index].features.map((feature) => (
+                            <span
+                              key={feature}
+                              className="rounded-full border border-white/10 bg-white/[0.06] px-4 py-2 text-xs text-white/62"
+                            >
+                              {feature}
+                            </span>
+                          ))}
+                        </div>
+                      </CardContent>
+                    </div>
                   </Card>
                 </HoverScale>
               </FadeUp>

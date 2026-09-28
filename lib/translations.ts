@@ -82,6 +82,10 @@ export const translations = {
       specsTitle: "Une Gamme Complète",
       specsDescription:
         "Chaque produit AERA est le résultat d'une recherche approfondie et d'un engagement envers l'excellence. De la sélection des ingrédients à l'emballage final, chaque détail est pensé pour offrir une expérience optimale.",
+      strongEyebrow: "Édition très forte",
+      strongTitle: "Snus extrêmement fort",
+      strongDescription:
+        "Deux références pensées pour les utilisateurs expérimentés qui recherchent une intensité maximale, un format discret et une sensation puissante.",
       missionEyebrow: "Notre mission",
       missionTitle: "Notre Vision",
       missionParagraph1:
@@ -110,6 +114,20 @@ export const translations = {
           badge: "Strong",
           description: "L'exotisme sucré de la mangue, avec une intensité remarquable pour les utilisateurs expérimentés.",
           features: ["Saveur exotique", "Dosage puissant", "Pour les expérimentés"],
+        },
+      ],
+      strongProducts: [
+        {
+          name: "AERA Dynamite",
+          strength: "50mg",
+          description: "Une édition rouge explosive, conçue pour une intensité très élevée et une expérience nette dès les premières minutes.",
+          features: ["Très fort", "Profil fruité glacé", "Pour utilisateurs expérimentés"],
+        },
+        {
+          name: "AERA TNT",
+          strength: "60mg",
+          description: "Une référence ultra intense au caractère plus brut, avec un design noir et or qui affirme sa puissance.",
+          features: ["Ultra fort", "Impact puissant", "Format premium"],
         },
       ],
       specs: [
@@ -252,6 +270,10 @@ export const translations = {
       specsTitle: "A Complete Range",
       specsDescription:
         "Every AERA product is the result of in-depth research and a commitment to excellence. From ingredient selection to final packaging, every detail is designed to deliver an optimal experience.",
+      strongEyebrow: "Extra strong edition",
+      strongTitle: "Extremely strong snus",
+      strongDescription:
+        "Two references designed for experienced users looking for maximum intensity, a discreet format, and a powerful sensation.",
       missionEyebrow: "Our mission",
       missionTitle: "Our Vision",
       missionParagraph1:
@@ -280,6 +302,20 @@ export const translations = {
           badge: "Strong",
           description: "Sweet mango exoticism with remarkable intensity for experienced users.",
           features: ["Exotic flavor", "Strong dosage", "For experienced users"],
+        },
+      ],
+      strongProducts: [
+        {
+          name: "AERA Dynamite",
+          strength: "50mg",
+          description: "An explosive red edition built for very high intensity and a sharp experience from the first minutes.",
+          features: ["Very strong", "Iced fruity profile", "For experienced users"],
+        },
+        {
+          name: "AERA TNT",
+          strength: "60mg",
+          description: "An ultra-intense reference with a rawer character and a black-and-gold design that expresses its power.",
+          features: ["Ultra strong", "Powerful impact", "Premium format"],
         },
       ],
       specs: [
