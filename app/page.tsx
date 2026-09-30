@@ -60,35 +60,37 @@ export default function HomePage() {
 
   return (
     <div className="min-h-screen overflow-hidden">
-      <section className="relative min-h-screen flex items-center pt-28 pb-16 overflow-hidden bg-gradient-to-br from-background via-background to-muted/30">
+      <section className="relative flex items-start overflow-hidden bg-gradient-to-br from-background via-background to-muted/30 px-0 pb-3 pt-24 md:min-h-[100svh] md:items-center md:pt-28 lg:pb-16">
         <div className="absolute top-1/4 -left-32 w-96 h-96 bg-emerald-500/5 rounded-full blur-3xl" />
         <div className="absolute bottom-1/4 -right-32 w-96 h-96 bg-amber-500/5 rounded-full blur-3xl" />
 
         <div className="container mx-auto px-6 md:px-8">
-          <div className="grid lg:grid-cols-2 gap-12 lg:gap-8 items-center">
+          <div className="grid items-center gap-7 lg:grid-cols-2 lg:gap-8">
             <div className="text-center lg:text-left order-2 lg:order-1">
               <FadeUp>
-                <span className="inline-flex items-center gap-2 px-4 py-1.5 text-xs font-medium tracking-widest uppercase bg-foreground/5 text-foreground/70 rounded-full mb-8 border border-foreground/10">
+                <span className="mb-5 inline-flex items-center gap-2 rounded-full border border-foreground/10 bg-foreground/5 px-4 py-1.5 text-xs font-medium uppercase tracking-widest text-foreground/70 md:mb-8">
                   <span className="w-1.5 h-1.5 rounded-full bg-emerald-500 animate-pulse" />
                   {home.badge}
                 </span>
               </FadeUp>
 
-              <div className="mb-8">
+              <div className="mb-5 md:mb-8">
                 <FadeUp delay={0.1}>
-                  <p className="text-sm text-muted-foreground uppercase tracking-[0.2em] mb-4">{home.intro}</p>
+                  <p className="mb-3 text-xs uppercase tracking-[0.22em] text-muted-foreground sm:text-sm md:mb-4">
+                    {home.intro}
+                  </p>
                 </FadeUp>
                 <h1 className="font-heading font-semibold tracking-tight leading-[0.95]">
                   <FadeUp delay={0.2}>
-                    <span className="block text-5xl md:text-6xl lg:text-7xl xl:text-8xl">Nicotine</span>
+                    <span className="block text-4xl sm:text-5xl md:text-6xl lg:text-7xl xl:text-8xl">Nicotine</span>
                   </FadeUp>
                   <FadeUp delay={0.3}>
-                    <span className="block text-5xl md:text-6xl lg:text-7xl xl:text-8xl text-muted-foreground/30">
+                    <span className="block text-4xl text-muted-foreground/30 sm:text-5xl md:text-6xl lg:text-7xl xl:text-8xl">
                       Pouches
                     </span>
                   </FadeUp>
                   <FadeUp delay={0.4}>
-                    <span className="block text-lg md:text-xl lg:text-2xl font-normal text-muted-foreground mt-4 tracking-normal">
+                    <span className="mt-3 block text-base font-normal tracking-normal text-muted-foreground md:mt-4 md:text-xl lg:text-2xl">
                       {countryPrefix}
                       <span className="text-foreground font-medium">{home.country}</span>
                     </span>
@@ -97,15 +99,15 @@ export default function HomePage() {
               </div>
 
               <FadeUp delay={0.5}>
-                <p className="text-base md:text-lg text-muted-foreground mb-10 max-w-md mx-auto lg:mx-0 leading-relaxed">
+                <p className="mx-auto mb-7 max-w-[21rem] text-base leading-7 text-muted-foreground md:mb-10 md:max-w-md md:text-lg lg:mx-0">
                   {home.heroDescription}
                 </p>
               </FadeUp>
 
               <FadeUp delay={0.6}>
-                <div className="flex flex-col sm:flex-row gap-4 justify-center lg:justify-start">
+                <div className="flex flex-col justify-center gap-3 sm:flex-row sm:gap-4 lg:justify-start">
                   <MagneticWrapper>
-                    <Button asChild size="lg" className="text-base h-14 px-8 rounded-full">
+                    <Button asChild size="lg" className="h-13 rounded-full px-7 text-base md:h-14 md:px-8">
                       <Link href="/produits">
                         {home.heroPrimaryCta}
                         <ArrowRight className="ml-2 h-4 w-4" />
@@ -113,7 +115,7 @@ export default function HomePage() {
                     </Button>
                   </MagneticWrapper>
                   <MagneticWrapper>
-                    <Button asChild variant="outline" size="lg" className="text-base h-14 px-8 rounded-full">
+                    <Button asChild variant="outline" size="lg" className="h-13 rounded-full px-7 text-base md:h-14 md:px-8">
                       <Link href="/contact">{home.heroSecondaryCta}</Link>
                     </Button>
                   </MagneticWrapper>
@@ -121,7 +123,7 @@ export default function HomePage() {
               </FadeUp>
 
               <FadeUp delay={0.7}>
-                <div className="flex flex-wrap gap-6 mt-12 justify-center lg:justify-start">
+                <div className="mt-6 flex flex-wrap justify-center gap-4 md:mt-12 md:gap-6 lg:justify-start">
                   <div className="flex items-center gap-2 text-muted-foreground text-sm">
                     <div className="w-8 h-8 rounded-full bg-emerald-500/10 flex items-center justify-center">
                       <Leaf className="w-4 h-4 text-emerald-600" />
@@ -140,21 +142,21 @@ export default function HomePage() {
 
             <FadeUp delay={0.3} className="relative order-1 lg:order-2">
               <div className="relative flex items-center justify-center">
-                <div className="absolute w-[90%] aspect-square rounded-full border border-foreground/5 animate-[spin_30s_linear_infinite]" />
-                <div className="absolute w-[75%] aspect-square rounded-full border border-foreground/5 animate-[spin_25s_linear_infinite_reverse]" />
-                <div className="absolute w-[60%] aspect-square rounded-full border border-dashed border-foreground/10" />
+                <div className="absolute hidden aspect-square w-[90%] rounded-full border border-foreground/5 animate-[spin_30s_linear_infinite] sm:block" />
+                <div className="absolute hidden aspect-square w-[75%] rounded-full border border-foreground/5 animate-[spin_25s_linear_infinite_reverse] sm:block" />
+                <div className="absolute hidden aspect-square w-[60%] rounded-full border border-dashed border-foreground/10 sm:block" />
 
-                <div className="relative z-10 w-full max-w-lg animate-[float_6s_ease-in-out_infinite]">
+                <div className="relative z-10 w-full max-w-[21.5rem] animate-[float_6s_ease-in-out_infinite] sm:max-w-md lg:max-w-lg">
                   <div className="relative">
                     <div className="absolute inset-0 bg-gradient-to-br from-emerald-500/20 via-transparent to-amber-500/20 rounded-full blur-3xl scale-75" />
 
-                    <div className="premium-frame relative rounded-[2rem] overflow-hidden shadow-2xl shadow-black/10">
+                    <div className="premium-frame relative overflow-hidden rounded-[1.5rem] shadow-2xl shadow-black/10 md:rounded-[2rem]">
                       <Image
                         src="https://hebbkx1anhila5yf.public.blob.vercel-storage.com/WhatsApp%20Image%202026-04-02%20at%2016.00.33%20%281%29-pRv6uk6SYwnhA5v7LDUlPxk1F2BElw.jpeg"
                         alt={home.heroImageAlt}
                         width={600}
                         height={500}
-                        className="premium-media w-full h-auto"
+                        className="premium-media aspect-[1.28/1] h-auto w-full object-cover"
                         priority
                       />
                     </div>
@@ -184,16 +186,16 @@ export default function HomePage() {
           </div>
         </div>
 
-        <div className="absolute bottom-8 left-1/2 -translate-x-1/2">
+        <div className="absolute bottom-8 left-1/2 hidden -translate-x-1/2 md:block">
           <ScrollIndicator />
         </div>
       </section>
 
-      <section className="py-32 md:py-40 relative">
+      <section className="relative pb-16 pt-0 md:py-40">
         <div className="container mx-auto px-6 md:px-8">
           <FadeUp>
             <div className="max-w-4xl mx-auto text-center">
-              <span className="inline-block text-xs font-medium tracking-widest uppercase text-muted-foreground mb-6">
+              <span className="mb-4 inline-block text-xs font-medium uppercase tracking-widest text-muted-foreground md:mb-6">
                 {home.aboutEyebrow}
               </span>
               <h2 className="text-3xl md:text-4xl lg:text-5xl font-heading font-semibold mb-8 tracking-tight">

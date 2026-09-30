@@ -22,37 +22,48 @@ export function Header() {
     return () => window.removeEventListener("scroll", handleScroll)
   }, [])
 
+  useEffect(() => {
+    document.body.style.overflow = isMenuOpen ? "hidden" : ""
+    return () => {
+      document.body.style.overflow = ""
+    }
+  }, [isMenuOpen])
+
   const navLinks = copy.header.nav
 
   return (
     <header
-      className="fixed top-0 left-0 right-0 z-50 transition-all duration-500"
+      className="fixed left-0 right-0 top-0 z-50 transition-all duration-500"
       style={{
         transform: isLoaded ? "translateY(0)" : "translateY(-100%)",
         transition: "transform 0.6s cubic-bezier(0.25, 0.4, 0.25, 1)",
       }}
     >
       <div
-        className={`mx-auto px-4 md:px-6 pt-4 transition-all duration-700 ease-[cubic-bezier(0.25,0.4,0.25,1)] ${
+        className={`mx-auto px-4 pt-[max(0.75rem,env(safe-area-inset-top))] transition-all duration-700 ease-[cubic-bezier(0.25,0.4,0.25,1)] md:px-6 md:pt-4 ${
           isScrolled ? "max-w-4xl" : "max-w-7xl"
         }`}
       >
         <div
-          className={`premium-border rounded-2xl transition-all duration-500 ${
+          className={`premium-border rounded-[1.15rem] transition-all duration-500 md:rounded-2xl ${
             isScrolled
               ? "bg-white/80 backdrop-blur-xl shadow-xl shadow-black/[0.06] border border-white/35"
-              : "bg-white/56 backdrop-blur-md border border-white/20"
+              : "bg-white/74 backdrop-blur-xl border border-white/30 md:bg-white/56 md:backdrop-blur-md md:border-white/20"
           }`}
         >
-          <div className={`transition-all duration-500 ${isScrolled ? "px-4 md:px-6" : "px-6 md:px-8"}`}>
-            <div className={`flex items-center justify-between transition-all duration-500 ${isScrolled ? "h-14 md:h-16" : "h-20 md:h-22"}`}>
+          <div className={`transition-all duration-500 ${isScrolled ? "px-4 md:px-6" : "px-4 md:px-8"}`}>
+            <div
+              className={`flex h-16 items-center justify-between transition-all duration-500 ${
+                isScrolled ? "md:h-16" : "md:h-22"
+              }`}
+            >
               <Link href="/" className="relative group transition-transform duration-200 hover:scale-[1.02]">
                 <Image
                   src="/images/logo.png"
                   alt="AERA"
                   width={180}
                   height={72}
-                  className={`w-auto object-contain transition-all duration-500 ${isScrolled ? "h-10 md:h-11" : "h-14 md:h-16"}`}
+                  className={`h-9 w-auto object-contain transition-all duration-500 ${isScrolled ? "md:h-11" : "md:h-16"}`}
                   style={{ width: "auto" }}
                   priority
                 />
@@ -106,9 +117,10 @@ export function Header() {
                 <Button
                   variant="ghost"
                   size="icon"
-                  className="md:hidden relative w-10 h-10"
+                  className="relative h-11 w-11 rounded-full md:hidden"
                   onClick={() => setIsMenuOpen(!isMenuOpen)}
                   aria-label={isMenuOpen ? copy.header.closeMenu : copy.header.openMenu}
+                  aria-expanded={isMenuOpen}
                 >
                   <span
                     className={`absolute transition-all duration-200 ${
@@ -129,11 +141,11 @@ export function Header() {
             </div>
 
             <nav
-              className={`md:hidden overflow-hidden transition-all duration-300 ease-out ${
-                isMenuOpen ? "max-h-80 opacity-100" : "max-h-0 opacity-0"
+              className={`fixed inset-x-4 top-[calc(max(0.75rem,env(safe-area-inset-top))+4.6rem)] md:hidden overflow-hidden rounded-[1.15rem] border border-white/35 bg-white/94 shadow-2xl shadow-black/10 backdrop-blur-2xl transition-all duration-300 ease-out ${
+                isMenuOpen ? "max-h-[calc(100svh-6rem)] opacity-100" : "pointer-events-none max-h-0 opacity-0"
               }`}
             >
-              <div className="py-6 border-t border-border/50">
+              <div className="p-5">
                 <div className="mb-5 flex items-center justify-between gap-3">
                   <span className="text-xs font-medium uppercase tracking-[0.18em] text-muted-foreground">
                     {copy.header.languageLabel}
@@ -166,7 +178,7 @@ export function Header() {
                     >
                       <Link
                         href={link.href}
-                        className="block py-3 text-lg font-medium text-muted-foreground hover:text-foreground transition-colors"
+                        className="block rounded-xl px-3 py-3 text-lg font-medium text-foreground transition-colors hover:bg-foreground/5"
                         onClick={() => setIsMenuOpen(false)}
                       >
                         {link.label}
